@@ -1,0 +1,38 @@
+html body #root {
+	height: 70vh;
+}
+
+/* Container in which the login-widget is centered*/
+.container {
+	width: 100%;
+	height: 100%;
+}
+
+/* Contains 'Login' title and login form */
+.login-widget {
+	width: 20rem;
+	padding: 2rem;
+	background-color: lightblue;
+	border-style: solid;
+	border-radius: 12px;
+}
+
+/* Contains all the input boxes and the Submit button */
+.login-form {
+	gap: 0.5rem;
+	width: 100%;
+}
+
+/* Just the input boxes from the form */
+.login-form input {
+	border-radius: 12px;
+	border: none;
+	padding: 0.5rem;
+	font-size: 15px;
+}
+
+/* Styling for focused box (when clicked on) */
+.login-form input:focus {
+	outline: 2px rgb(88, 161, 185) solid;
+	box-shadow: 2px 4px 10px -5px;
+}

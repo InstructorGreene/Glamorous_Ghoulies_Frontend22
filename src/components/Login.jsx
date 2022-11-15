@@ -25,29 +25,32 @@ const Login = () => {
 	};
 
 	return (
-		<div className="login-form">
-			<div className="fb col">
+		<div className="fb centered container">
+			<div className="fb col login-widget centered">
 				<h2>Login</h2>
-				<form onSubmit={(event) => submitHandler(event)}>
+				<form
+					className="fb col login-form"
+					onSubmit={(event) => submitHandler(event)}
+				>
 					<input
-						className="user-form"
 						name="username"
 						type="text"
-						placeholder="Enter Username..."
+						value={userDetails.username}
+						placeholder="Username..."
 						onChange={(event) => changeHandler(event)}
 					></input>
 					<input
-						className="user-form"
 						name="email"
 						type="email"
-						placeholder="Enter Email..."
+						value={userDetails.email}
+						placeholder="Email..."
 						onChange={(event) => changeHandler(event)}
 					></input>
 					<input
-						className="user-form"
 						name="password"
 						type="password"
-						placeholder="Enter Password..."
+						value={userDetails.password}
+						placeholder="Password..."
 						onChange={(event) => changeHandler(event)}
 					></input>
 					<button type="submit">Submit</button>
