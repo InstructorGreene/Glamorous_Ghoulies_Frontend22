@@ -1,4 +1,3 @@
-import { FOCUSABLE_SELECTOR } from "@testing-library/user-event/dist/utils";
 import React, { useState } from "react";
 
 const Register = (props) => {

@@ -20,6 +20,7 @@ const Login = (props) => {
 
 	const submitHandler = async (event) => {
 		// Choose what to do on submit
+		console.log(userDetails);
 		event.preventDefault(); // Prevent page refreshing
 		try {
 			const res = await props.client.login(
@@ -32,35 +33,35 @@ const Login = (props) => {
 			alert("Incorrect details");
 			throw error;
 		}
-		// try {
-		// 	const res = await props.client.login()
-		// }
 	};
 
 	return (
-		<div className="login-form">
-			<div className="fb col">
+		<div className="fb centered container">
+			<div className="fb col login-widget centered">
 				<h2>Login</h2>
-				<form onSubmit={(event) => submitHandler(event)}>
+				<form
+					className="fb col login-form"
+					onSubmit={(event) => submitHandler(event)}
+				>
 					<input
 						name="username"
 						type="text"
-						placeholder="Enter Username..."
-						className="user-input"
+						value={userDetails.username}
+						placeholder="Username..."
 						onChange={(event) => changeHandler(event)}
 					></input>
 					<input
 						name="email"
 						type="email"
-						placeholder="Enter Email..."
-						className="user-input"
+						value={userDetails.email}
+						placeholder="Email..."
 						onChange={(event) => changeHandler(event)}
 					></input>
 					<input
 						name="password"
 						type="password"
-						placeholder="Enter Password..."
-						className="user-input"
+						value={userDetails.password}
+						placeholder="Password..."
 						onChange={(event) => changeHandler(event)}
 					></input>
 					<button type="submit">Submit</button>

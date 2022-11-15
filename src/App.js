@@ -18,85 +18,29 @@ const App = () => {
 		changeToken(token);
 	};
 
-	const testBackend = async () => {
-		let request = await client.getUsers();
-		console.log(request.data);
-	};
+	// const testBackend = async () => {
+	// 	let request = await client.getUsers();
+	// 	console.log(request.data);
+	// };
 
 	return (
-<<<<<<< Updated upstream
-		<Routes>
-			<Route
-				path="/"
-				element={
-					<div>
-						<Navbar />
-						<div>App</div>
-					</div>
-				}
-			/>{" "}
-			{/* Landing Page*/}
-			<Route
-				path="/login"
-				element={
-					<div>
-						<Navbar />
-						<Login />
-					</div>
-				}
-			/>{" "}
-			{/* Login Page */}
-			<Route path="/bookings">
-=======
 		<>
 			<Navbar />
 			<Routes>
-				{/* Landing Page*/}
->>>>>>> Stashed changes
+				<Route path="/" element={<div>App</div>} /> {/* Landing Page*/}
 				<Route
-					path="/bookings/new"
+					path="/login"
 					element={
-						<div>
-<<<<<<< Updated upstream
-							<Navbar />
-							<NewBooking />
-						</div>
+						<Login loggedIn={(token) => loggedIn(token)} client={client} />
 					}
 				/>
-=======
-							<div>App</div>
-							<button onClick={() => testBackend()}>
-								test users table fetch
-							</button>
-						</div>
-					}
-				/>{" "}
-				{/* Login Page */}
->>>>>>> Stashed changes
-				<Route
-					path="/bookings/view"
-					element={
-<<<<<<< Updated upstream
-						<div>
-							<Navbar />
-							<ViewBookings />
-						</div>
-					}
-				/>
-			</Route>
-		</Routes>
-=======
-						<Login client={client} loggedIn={(token) => loggedIn(token)} />
-					}
-				/>{" "}
-				<Route path="/register" element={<Register client={client} />} />
 				<Route path="/bookings">
 					<Route path="/bookings/new" element={<NewBooking />} />
 					<Route path="/bookings/view" element={<ViewBookings />} />
 				</Route>
+				<Route path="/register" element={<Register client={client} />} />
 			</Routes>
 		</>
->>>>>>> Stashed changes
 	);
 };
 
