@@ -12,6 +12,15 @@ export class ApiClient {
 		});
 	}
 
+	login(username, password) {
+		return this.apiCall("post", `${url}auth`, {
+			username,
+			password,
+		}).catch((error) => {
+			throw error;
+		});
+	}
+
 	getUsers() {
 		return this.apiCall("get", url);
 	}
@@ -21,10 +30,10 @@ export class ApiClient {
 	}
 
 	removeUser(id) {
-		return this.apiCall("delete", `${url}/${id}`);
+		return this.apiCall("delete", `${url}${id}`);
 	}
 
 	updateUser(id, username, email, password) {
-		return this.apiCall("put", `${url}/${id}`, { username, email, password });
+		return this.apiCall("put", `${url}${id}`, { username, email, password });
 	}
 }
