@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../images/logo.webp";
+import "./Navbar.css";
 
 const Navbar = () => {
 	return (
-		<div className="fb row">
+		<div className="navbar fb row">
 			<img
 				className="stannington-carnival-logo"
 				src={require("../images/logo.webp")}
