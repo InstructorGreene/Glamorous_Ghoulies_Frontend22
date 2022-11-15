@@ -1,0 +1,16 @@
+/* Global styles go in here please :) */
+.fb {
+	display: flex;
+}
+
+.col {
+	flex-direction: column;
+}
+
+.row {
+	flex-direction: row;
+}
+
+.mg-1 {
+	margin: 1rem;
+}
