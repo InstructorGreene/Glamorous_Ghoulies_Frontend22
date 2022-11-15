@@ -30,24 +30,24 @@ const Login = () => {
 				<h2>Login</h2>
 				<form onSubmit={(event) => submitHandler(event)}>
 					<input
+						className="user-form"
 						name="username"
 						type="text"
 						placeholder="Enter Username..."
-						className="user-input"
 						onChange={(event) => changeHandler(event)}
 					></input>
 					<input
+						className="user-form"
 						name="email"
 						type="email"
 						placeholder="Enter Email..."
-						className="user-input"
 						onChange={(event) => changeHandler(event)}
 					></input>
 					<input
+						className="user-form"
 						name="password"
 						type="password"
 						placeholder="Enter Password..."
-						className="user-input"
 						onChange={(event) => changeHandler(event)}
 					></input>
 					<button type="submit">Submit</button>

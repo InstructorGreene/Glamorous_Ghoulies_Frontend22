@@ -8,48 +8,47 @@ import ViewBookings from "./components/ViewBookings.jsx";
 
 const App = () => {
 	return (
-		<Routes>
-			<Route
-				path="/"
-				element={
-					<div>
-						<Navbar />
-						<div>App</div>
-					</div>
-				}
-			/>{" "}
-			{/* Landing Page*/}
-			<Route
-				path="/login"
-				element={
-					<div>
-						<Navbar />
-						<Login />
-					</div>
-				}
-			/>{" "}
-			{/* Login Page */}
-			<Route path="/bookings">
+		<>
+			<Navbar />
+			<Routes>
 				<Route
-					path="/bookings/new"
+					path="/"
 					element={
 						<div>
-							<Navbar />
-							<NewBooking />
+							<div>App</div>
 						</div>
 					}
-				/>
+				/>{" "}
+				{/* Landing Page*/}
 				<Route
-					path="/bookings/view"
+					path="/login"
 					element={
 						<div>
-							<Navbar />
-							<ViewBookings />
+							<Login />
 						</div>
 					}
-				/>
-			</Route>
-		</Routes>
+				/>{" "}
+				{/* Login Page */}
+				<Route path="/bookings">
+					<Route
+						path="/bookings/new"
+						element={
+							<div>
+								<NewBooking />
+							</div>
+						}
+					/>
+					<Route
+						path="/bookings/view"
+						element={
+							<div>
+								<ViewBookings />
+							</div>
+						}
+					/>
+				</Route>
+			</Routes>
+		</>
 	);
 };
 
