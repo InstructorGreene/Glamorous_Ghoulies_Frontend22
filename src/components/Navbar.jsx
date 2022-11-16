@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../images/logo.webp";
+import "../images/stannington.jpg";
 import "./Navbar.css";
+
 
 const Navbar = (props) => {
 	const logout = (changeToken) => {
@@ -15,10 +16,11 @@ const Navbar = (props) => {
 		<div className="navbar fb row">
 			<Link to="/">
 				<img
-					className="stannington-carnival-logo"
-					src={require("../images/logo.webp")}
-					alt={"event it logo"}
-				/>
+        className="stannington-carnival-logo"
+        style={{ width: "5.8%" }}
+        src={require("../images/stannington.jpg")}
+        alt={"event it logo"}
+      />
 			</Link>
 			<Link to="/">
 				<button className="nav-btn">Home</button>

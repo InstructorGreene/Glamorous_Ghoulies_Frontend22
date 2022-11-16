@@ -1,23 +1,17 @@
 /* Global styles go in here please :) */
 .fb {
-	display: flex;
-}
-
-.col {
-	flex-direction: column;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  display: grid;
 }
 
 .row {
-	flex-direction: row;
+  flex-direction: row;
 }
 
 .mg-1 {
-	margin: 1rem;
-}
-
-.centered {
-	justify-content: center;
-	align-items: center;
+  margin: 1rem;
 }
 
 .no-td {

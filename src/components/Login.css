@@ -1,38 +1,89 @@
-html body #root {
-	height: 70vh;
+body {
+  font-family: "Lato", sans-serif;
 }
 
-/* Container in which the login-widget is centered*/
-.container {
-	width: 100%;
-	height: 100%;
+.form-group {
+  margin-bottom: 1rem;
 }
 
-/* Contains 'Login' title and login form */
-.login-widget {
-	width: 20rem;
-	padding: 2rem;
-	background-color: lightblue;
-	border-style: solid;
-	border-radius: 12px;
+.main-head {
+  height: 150px;
+  background: #fff;
 }
 
-/* Contains all the input boxes and the Submit button */
-.login-form {
-	gap: 0.5rem;
-	width: 100%;
+.sidenav {
+  height: 100%;
+  background-color: #0a3051;
+  overflow-x: hidden;
+  /* padding-top: 20px; */
 }
 
-/* Just the input boxes from the form */
-.login-form input {
-	border-radius: 12px;
-	border: none;
-	padding: 0.5rem;
-	font-size: 15px;
+.main {
+  padding: 0px 10px;
 }
 
-/* Styling for focused box (when clicked on) */
-.login-form input:focus {
-	outline: 2px rgb(88, 161, 185) solid;
-	box-shadow: 2px 4px 10px -5px;
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .login-form {
+    margin-top: 20%;
+  }
+
+  .register-form {
+    margin-top: 10%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .main {
+    margin-left: 32%;
+  }
+
+  .sidenav {
+    width: 40%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+  }
+
+  .login-form {
+    margin: auto;
+  }
+
+  .register-form {
+    margin-top: 30%;
+  }
+}
+
+.login-main-text {
+  margin-top: 2%;
+  padding: 1px;
+  color: #fff;
+  text-align: center;
+}
+
+.login-main-text h2 {
+  font-weight: 300;
+}
+
+.btn-black {
+  background-color: #82b0c9 !important;
+  color: #fff;
+}
+
+/* registration.jsx */
+.btn-warning {
+  margin-right: 15%;
+  margin-top: 1rem;
+}
+/* end of registration.jsx */
+
+.stannington-carnival-sidebar {
+  margin-left: 25%;
+  margin-top: 0%;
 }

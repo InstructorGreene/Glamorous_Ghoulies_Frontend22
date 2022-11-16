@@ -3,20 +3,20 @@ import "../App.css";
 import "./Login.css";
 
 const Login = (props) => {
-	const [userDetails, setUserDetails] = useState({
-		username: "",
-		email: "",
-		password: "",
-	});
+  const [userDetails, setUserDetails] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
 
-	const changeHandler = (event) => {
-		// Updates states on input box change
-		let fieldValue = event.target.value;
-		let fieldName = event.target.name;
-		const newState = { ...userDetails };
-		newState[fieldName] = fieldValue;
-		setUserDetails(newState);
-	};
+  const changeHandler = (event) => {
+    // Updates states on input box change
+    let fieldValue = event.target.value;
+    let fieldName = event.target.name;
+    const newState = { ...userDetails };
+    newState[fieldName] = fieldValue;
+    setUserDetails(newState);
+  };
 
 	const submitHandler = async (event) => {
 		// Choose what to do on submit
@@ -34,40 +34,67 @@ const Login = (props) => {
 		}
 	};
 
-	return (
-		<div className="fb centered container">
-			<div className="fb col login-widget centered">
-				<h2>Login</h2>
-				<form
-					className="fb col login-form"
-					onSubmit={(event) => submitHandler(event)}
-				>
-					<input
-						name="username"
-						type="text"
-						value={userDetails.username}
-						placeholder="Username..."
-						onChange={(event) => changeHandler(event)}
-					></input>
-					<input
-						name="email"
-						type="email"
-						value={userDetails.email}
-						placeholder="Email..."
-						onChange={(event) => changeHandler(event)}
-					></input>
-					<input
-						name="password"
-						type="password"
-						value={userDetails.password}
-						placeholder="Password..."
-						onChange={(event) => changeHandler(event)}
-					></input>
-					<button type="submit">Submit</button>
-				</form>
-			</div>
-		</div>
-	);
+
+  return (
+    <div className="sidenav">
+      <img
+        className="stannington-carnival-sidebar"
+        style={{ width: "50%" }}
+        src={require("../images/stannington.jpg")}
+        alt={"event it logo"}
+      />
+      <div className="login-main-text">
+        <span>
+          <h2>CELEBRATING STANNINGTON</h2>
+        </span>
+        <p>Login or register from here to access bookings.</p>
+        <div className="main">
+          <div class="col-md-6 col-sm-12">
+            <div className="login-form">
+              <form onSubmit={(event) => submitHandler(event)}>
+                <div className="form-group">
+                  <input
+                    className="form-control"
+                    name="username"
+                    type="text"
+                    value={userDetails.username}
+                    placeholder="Username..."
+                    onChange={(event) => changeHandler(event)}
+                  ></input>
+                </div>
+                <div className="form-group">
+                  <input
+                    className="form-control"
+                    name="email"
+                    type="email"
+                    value={userDetails.email}
+                    placeholder="Email..."
+                    onChange={(event) => changeHandler(event)}
+                  ></input>
+                </div>
+                <div className="form-group">
+                  <input
+                    className="form-control"
+                    name="password"
+                    type="password"
+                    value={userDetails.password}
+                    placeholder="Password..."
+                    onChange={(event) => changeHandler(event)}
+                  ></input>
+                </div>
+                <button type="submit" className="btn btn-black">
+                  Login
+                </button>
+                <button type="submit" className="btn btn-dark">
+                  Register
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Login;
