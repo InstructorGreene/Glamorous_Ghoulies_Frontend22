@@ -20,7 +20,6 @@ const Login = (props) => {
 
 	const submitHandler = async (event) => {
 		// Choose what to do on submit
-		console.log(userDetails);
 		event.preventDefault(); // Prevent page refreshing
 		try {
 			const res = await props.client.login(

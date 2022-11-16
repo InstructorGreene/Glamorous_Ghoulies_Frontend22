@@ -25,7 +25,7 @@ const App = () => {
 
 	return (
 		<>
-			<Navbar />
+			<Navbar token={token} changeToken={changeToken} />
 			<Routes>
 				<Route path="/" element={<div>App</div>} /> {/* Landing Page*/}
 				<Route
