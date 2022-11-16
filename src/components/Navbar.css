@@ -1,29 +1,29 @@
 .navbar {
-	display: flex;
-	padding: 5px;
-	height: 120px;
-	width: 100%;
-	background-color: grey;
-	position: relative;
+  display: flex;
+  padding: 5px;
+  height: 120px;
+  width: 100%;
+  background-color: grey;
+  position: relative;
 }
 
 .nav-buttons {
-	display: flex;
-	margin-left: auto;
+  display: flex;
+  margin-left: auto;
 }
 
 .nav-btn {
-	border: none;
-	display: inline-block;
-	width: 120px;
-	height: 120px;
-	background-color: grey;
-	padding: 10px 10px 10px 10px;
-	font-size: 20px;
-	margin-right: auto;
-	cursor: pointer;
+  border: none;
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  background-color: grey;
+  padding: 10px 10px 10px 10px;
+  font-size: 20px;
+  margin-right: auto;
+  cursor: pointer;
 }
 
 .nav-btn:hover {
-	color: lightblue;
+  color: lightblue;
 }

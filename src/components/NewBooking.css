@@ -1,38 +1,55 @@
-html body #root {
-	height: 70vh;
+.containerbox1 {
+  display: flex;
+  margin-top: 10rem;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Container in which the login-widget is centered*/
-.container {
-	width: 100%;
-	height: 100%;
+.col-3 {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
 }
 
-/* Contains 'Login' title and login form */
-.booking-widget {
-	width: 20rem;
-	padding: 2rem;
-	background-color: lightblue;
-	border-style: solid;
-	border-radius: 12px;
+.btn1 {
+  display: flex;
+  flex-direction: column;
 }
 
-/* Contains all the input boxes and the Submit button */
-.booking-form {
-	gap: 0.5rem;
-	width: 100%;
+.title {
+  min-width: 300px;
+  max-width: 700px;
+  margin: auto;
+  background-color: #82b0c9;
+  padding: 10px 30px;
+  border-radius: 2px;
+  font-size: 16px;
+  text-align: center;
+  padding: 1rem;
+  gap: 7px;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Just the input boxes from the form */
-.booking-form input {
-	border-radius: 12px;
-	border: none;
-	padding: 0.5rem;
-	font-size: 15px;
+p1 {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+.textArea {
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  font-family: "helvetica";
 }
 
-/* Styling for focused box (when clicked on) */
-.booking-form input:focus {
-	outline: 2px rgb(88, 161, 185) solid;
-	box-shadow: 2px 4px 10px -5px;
+.button1 {
+  margin: 20px 0px;
+  padding: 10px 30px;
+  border-radius: 10px;
+  border: 1px solid lightgrey;
+}
+.button1:hover {
+  background-color: black;
+  color: lightgrey;
 }
