@@ -1,83 +1,139 @@
-import React from "react";
+import React, { useState } from "react";
 import "./NewBooking.css";
 
-const NewBooking = () => {
-  return (
-    <div>
-      <div className="title">
-        <h2>Booking Registration</h2>
-      </div>
-      <div className="selectstall">
-        <p1>Select type of stall:</p1>
-        <input
-          type="checkbox"
-          name="stallbtn"
-          // VALUE TBC
-          value=""
-        />
-        Craft
-        <input
-          type="checkbox"
-          name="stallbtn"
-          // VALUE TBC
-          value=""
-        />
-        Commercial
-        <input
-          type="checkbox"
-          name="stallbtn"
-          // VALUE TBC
-          value=""
-        />
-        Charity
-      </div>
-      <div className="personal">
-        <h2>First name</h2>
-        <textarea
-          name=""
-          type="text"
-          // VALUE TBC
-          value=""
-          placeholder="First name"
-        />
-        <h2>Last Name</h2>
-        <textarea
-          name=""
-          type="text"
-          // VALUE TBC
-          value=""
-          placeholder="Last Name"
-        />
-        <h2>Email</h2>
-        <textarea
-          name=""
-          type="text"
-          // VALUE TBC
-          value=""
-          placeholder="Email"
-        />
-        <h2>Phone number</h2>
-        <textarea
-          name=""
-          type="number"
-          // VALUE TBC
-          value=""
-          placeholder="0000-000-000"
-        />
-        <h2>Any aditionl information that you whant to share before booking?</h2>
-        <textarea
-          name=""
-          type="text"
-          // VALUE TBC
-          value=""
-          placeholder="Enter yout comment here..."
-        />
-        <button className="submit" type="submit">
-          Submit
-        </button>
-      </div>
-    </div>
-  );
+const NewBooking = (props) => {
+	const [bookingDetails, setBookingDetails] = useState({
+		name: "",
+		business: "",
+		email: "",
+		telephone: "",
+		type: "",
+		comments: "",
+		status: "unpaid",
+		userId: "6373b0794befe87bfe7df08e",
+		// TODO: Add
+		// Status should always be 'unpaid'
+		// UserId will need to be fetched from backend
+	});
+
+	const changeHandler = (event) => {
+		// Updates states on input box change
+		let fieldValue = event.target.value;
+		let fieldName = event.target.name;
+		const newState = { ...bookingDetails };
+		newState[fieldName] = fieldValue;
+		setBookingDetails(newState);
+	};
+
+	const submitHandler = async (event) => {
+		event.preventDefault();
+		try {
+			const res = await props.client.addBooking(
+				bookingDetails.name,
+				bookingDetails.business,
+				bookingDetails.email,
+				bookingDetails.telephone,
+				bookingDetails.type,
+				bookingDetails.comments,
+				bookingDetails.status,
+				bookingDetails.userId
+			);
+			console.log(res.data.message);
+		} catch (error) {
+			alert("Something went wrong");
+			throw error;
+		}
+	};
+
+	return (
+		<div className="centered" style={{ paddingTop: "2rem" }}>
+			<div className="card">
+				<div className="title">
+					<h2>Booking Registration</h2>
+				</div>
+				<form onSubmit={(event) => submitHandler(event)}>
+					<div className="fb col">
+						<label>Select type of stall:</label>
+						<label>
+							<input
+								type="radio"
+								name="type"
+								value="Craft"
+								onChange={(event) => changeHandler(event)}
+							/>
+							Craft
+						</label>
+						<label>
+							<input
+								type="radio"
+								name="type"
+								value="Commercial"
+								onChange={(event) => changeHandler(event)}
+							/>
+							Commercial
+						</label>
+						<label>
+							<input
+								type="radio"
+								name="type"
+								value="Charity"
+								onChange={(event) => changeHandler(event)}
+							/>
+							Charity
+						</label>
+
+						<h2>Business/Charity name</h2>
+						<input
+							name="business"
+							type="text"
+							placeholder="Business/charity name"
+							value={bookingDetails.business}
+							onChange={(event) => changeHandler(event)}
+						/>
+
+						<h2>Full name</h2>
+						<input
+							name="name"
+							type="text"
+							placeholder="Full name"
+							value={bookingDetails.name}
+							onChange={(event) => changeHandler(event)}
+						/>
+
+						<h2>Email</h2>
+						<input
+							name="email"
+							type="email"
+							value={bookingDetails.email}
+							placeholder="Email"
+							onChange={(event) => changeHandler(event)}
+						/>
+						<h2>Phone number</h2>
+						<input
+							name="telephone"
+							type="text"
+							value={bookingDetails.telephone}
+							onChange={(event) => changeHandler(event)}
+							placeholder="Phone number"
+						/>
+						<h2>
+							Any additional information that you want to share before booking?
+						</h2>
+						<textarea
+							name="comments"
+							type="text"
+							value={bookingDetails.comments}
+							onChange={(event) => changeHandler(event)}
+							placeholder="Enter yout comment here..."
+						/>
+						<button className="btn" type="submit">
+							Submit
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	);
 };
 
 export default NewBooking;

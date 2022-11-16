@@ -36,7 +36,10 @@ const App = () => {
 					}
 				/>
 				<Route path="/bookings">
-					<Route path="/bookings/new" element={<NewBooking />} />
+					<Route
+						path="/bookings/new"
+						element={<NewBooking client={client} />}
+					/>
 					<Route path="/bookings/view" element={<ViewBookings />} />
 				</Route>
 				<Route path="/register" element={<Register client={client} />} />

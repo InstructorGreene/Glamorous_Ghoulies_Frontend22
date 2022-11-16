@@ -7,12 +7,28 @@
 	flex-direction: row;
 }
 
+.col {
+	flex-direction: column;
+}
+
 .mg-1 {
 	margin: 1rem;
 }
 
 .no-td {
 	text-decoration: none;
+}
+
+.centered {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.card {
+	border: 2px solid black;
+	border-radius: 20px;
+	padding: 1rem;
 }
 
 .form-control {

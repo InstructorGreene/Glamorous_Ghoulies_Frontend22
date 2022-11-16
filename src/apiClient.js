@@ -36,4 +36,21 @@ export class ApiClient {
 	updateUser(id, username, email, password) {
 		return this.apiCall("put", `${url}${id}`, { username, email, password });
 	}
+
+	// Add booking
+
+	addBooking(name, business, email, telephone, type, comments, status, userId) {
+		return this.apiCall("post", `${url}bookings`, {
+			name,
+			business,
+			email,
+			telephone,
+			type,
+			comments,
+			status,
+			userId,
+		}).catch((error) => {
+			throw error;
+		});
+	}
 }
