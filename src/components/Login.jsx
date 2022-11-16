@@ -18,19 +18,22 @@ const Login = (props) => {
     setUserDetails(newState);
   };
 
-  const submitHandler = async (event) => {
-    // Choose what to do on submit
-    console.log(userDetails);
-    event.preventDefault(); // Prevent page refreshing
-    try {
-      const res = await props.client.login(userDetails.username, userDetails.password);
-      props.loggedIn(res.data.token);
-      console.log(`success: ${res.data.token}`);
-    } catch (error) {
-      alert("Incorrect details");
-      throw error;
-    }
-  };
+	const submitHandler = async (event) => {
+		// Choose what to do on submit
+		event.preventDefault(); // Prevent page refreshing
+		try {
+			const res = await props.client.login(
+				userDetails.username,
+				userDetails.password
+			);
+			props.loggedIn(res.data.token);
+			console.log(`success: ${res.data.token}`);
+		} catch (error) {
+			alert("Incorrect details");
+			throw error;
+		}
+	};
+
 
   return (
     <div className="sidenav">

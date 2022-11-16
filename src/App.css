@@ -13,3 +13,7 @@
 .mg-1 {
   margin: 1rem;
 }
+
+.no-td {
+	text-decoration: none;
+}

@@ -24,20 +24,26 @@ const App = () => {
   // 	console.log(request.data);
   // };
 
-  return (
-    <>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<div>App</div>} /> {/* Landing Page*/}
-        <Route path="/login" element={<Login loggedIn={(token) => loggedIn(token)} client={client} />} />
-        <Route path="/bookings">
-          <Route path="/bookings/new" element={<NewBooking />} />
-          <Route path="/bookings/view" element={<ViewBookings />} />
-        </Route>
-        <Route path="/register" element={<Register client={client} />} />
-      </Routes>
-    </>
-  );
+
+	return (
+		<>
+			<Navbar token={token} changeToken={changeToken} />
+			<Routes>
+				<Route path="/" element={<div>App</div>} /> {/* Landing Page*/}
+				<Route
+					path="/login"
+					element={
+						<Login loggedIn={(token) => loggedIn(token)} client={client} />
+					}
+				/>
+				<Route path="/bookings">
+					<Route path="/bookings/new" element={<NewBooking />} />
+					<Route path="/bookings/view" element={<ViewBookings />} />
+				</Route>
+				<Route path="/register" element={<Register client={client} />} />
+			</Routes>
+		</>
+	);
 };
 
 export default App;
