@@ -1,4 +1,6 @@
 .navbar {
+	padding: 20px;
+
 	display: flex;
 	padding: 5px;
 	height: 120px;
@@ -26,4 +28,5 @@
 
 .nav-btn:hover {
 	color: lightblue;
+
 }
