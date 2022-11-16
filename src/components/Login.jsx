@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../App.css";
 import "./Login.css";
 
-const Login = () => {
+const Login = (props) => {
 	const [userDetails, setUserDetails] = useState({
 		username: "",
 		email: "",
@@ -18,10 +18,21 @@ const Login = () => {
 		setUserDetails(newState);
 	};
 
-	const submitHandler = (event) => {
+	const submitHandler = async (event) => {
 		// Choose what to do on submit
+		console.log(userDetails);
 		event.preventDefault(); // Prevent page refreshing
-		alert("ahhh");
+		try {
+			const res = await props.client.login(
+				userDetails.username,
+				userDetails.password
+			);
+			props.loggedIn(res.data.token);
+			console.log(`success: ${res.data.token}`);
+		} catch (error) {
+			alert("Incorrect details");
+			throw error;
+		}
 	};
 
 	return (
