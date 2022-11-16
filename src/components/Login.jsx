@@ -34,6 +34,12 @@ const Login = (props) => {
 
   return (
     <div className="sidenav">
+      <img
+        className="stannington-carnival-sidebar"
+        style={{ width: "50%" }}
+        src={require("../images/stannington.jpg")}
+        alt={"event it logo"}
+      />
       <div className="login-main-text">
         <span>
           <h2>CELEBRATING STANNINGTON</h2>

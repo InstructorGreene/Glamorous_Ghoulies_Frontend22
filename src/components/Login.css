@@ -13,9 +13,9 @@ body {
 
 .sidenav {
   height: 100%;
-  background-color: #2f5f89;
+  background-color: #0c3353;
   overflow-x: hidden;
-  padding-top: 20px;
+  /* padding-top: 20px; */
 }
 
 .main {
@@ -30,7 +30,7 @@ body {
 
 @media screen and (max-width: 450px) {
   .login-form {
-    margin-top: 10%;
+    margin-top: 20%;
   }
 
   .register-form {
@@ -40,7 +40,7 @@ body {
 
 @media screen and (min-width: 768px) {
   .main {
-    margin-left: 40%;
+    margin-left: 32%;
   }
 
   .sidenav {
@@ -52,18 +52,19 @@ body {
   }
 
   .login-form {
-    margin-top: 80%;
+    margin: auto;
   }
 
   .register-form {
-    margin-top: 20%;
+    margin-top: 30%;
   }
 }
 
 .login-main-text {
-  margin-top: 20%;
-  padding: 60px;
+  margin-top: 2%;
+  padding: 1px;
   color: #fff;
+  text-align: center;
 }
 
 .login-main-text h2 {
@@ -73,4 +74,16 @@ body {
 .btn-black {
   background-color: #82b0c9 !important;
   color: #fff;
+}
+
+/* registration.jsx */
+.btn-warning {
+  margin-right: 15%;
+  margin-top: 1rem;
+}
+/* end of registration.jsx */
+
+.stannington-carnival-sidebar {
+  margin-left: 25%;
+  margin-top: 0%;
 }

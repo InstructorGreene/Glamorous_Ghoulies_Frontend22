@@ -8,7 +8,7 @@ const Navbar = () => {
     <div className="navbar col">
       <img
         className="stannington-carnival-logo"
-        style={{ width: "5.8%", margin: 0 }}
+        style={{ width: "5.8%" }}
         src={require("../images/stannington.jpg")}
         alt={"event it logo"}
       />
