@@ -82,7 +82,7 @@ const Login = (props) => {
                 <button type="submit" className="btn btn-black">
                   Login
                 </button>
-                <button type="submit" class="btn btn-dark">
+                <button type="submit" className="btn btn-dark">
                   Register
                 </button>
               </form>

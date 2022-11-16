@@ -63,39 +63,45 @@ const Register = (props) => {
         </span>
         <h2>Register</h2>
         <div className="main">
-          <form className="col-md-6 col-sm-12" onSubmit={(event) => submitHandler(event)}>
+          <div class="col-md-6 col-sm-12">
             <div className="login-form">
-              <div className="form-group">
-                <input
-                  className="form-control"
-                  name="username"
-                  type="text"
-                  value={userDetails.username}
-                  placeholder="Username..."
-                  onChange={(event) => changeHandler(event)}
-                ></input>
-                <input
-                  className="form-control"
-                  name="email"
-                  type="email"
-                  value={userDetails.email}
-                  placeholder="Email..."
-                  onChange={(event) => changeHandler(event)}
-                ></input>
-                <input
-                  className="form-control"
-                  name="password"
-                  type="password"
-                  value={userDetails.password}
-                  placeholder="Password..."
-                  onChange={(event) => changeHandler(event)}
-                ></input>
-                <button className="btn btn-secondary" style={{ marginLeft: 50 }} type="submit">
+              <form onSubmit={(event) => submitHandler(event)}>
+                <div className="form-group">
+                  <input
+                    className="form-control"
+                    name="username"
+                    type="text"
+                    value={userDetails.username}
+                    placeholder="Username..."
+                    onChange={(event) => changeHandler(event)}
+                  ></input>
+                </div>
+                <div className="form-group">
+                  <input
+                    className="form-control"
+                    name="email"
+                    type="email"
+                    value={userDetails.email}
+                    placeholder="Email..."
+                    onChange={(event) => changeHandler(event)}
+                  ></input>
+                </div>
+                <div className="form-group">
+                  <input
+                    className="form-control"
+                    name="password"
+                    type="password"
+                    value={userDetails.password}
+                    placeholder="Password..."
+                    onChange={(event) => changeHandler(event)}
+                  ></input>
+                </div>
+                <button className="btn btn-secondary" style={{ marginLeft: 0 }} type="submit">
                   Create
                 </button>
-              </div>
+              </form>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
