@@ -96,7 +96,7 @@ const Register = (props) => {
                     onChange={(event) => changeHandler(event)}
                   ></input>
                 </div>
-                <button className="btn btn-secondary" style={{ marginLeft: 0 }} type="submit">
+                <button className="btn btn-secondary" type="submit">
                   Create
                 </button>
               </form>
