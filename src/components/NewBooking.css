@@ -9,7 +9,7 @@ html body #root {
 }
 
 /* Contains 'Login' title and login form */
-.login-widget {
+.booking-widget {
 	width: 20rem;
 	padding: 2rem;
 	background-color: lightblue;
@@ -18,13 +18,13 @@ html body #root {
 }
 
 /* Contains all the input boxes and the Submit button */
-.login-form {
+.booking-form {
 	gap: 0.5rem;
 	width: 100%;
 }
 
 /* Just the input boxes from the form */
-.login-form input {
+.booking-form input {
 	border-radius: 12px;
 	border: none;
 	padding: 0.5rem;
@@ -32,7 +32,7 @@ html body #root {
 }
 
 /* Styling for focused box (when clicked on) */
-.login-form input:focus {
+.booking-form input:focus {
 	outline: 2px rgb(88, 161, 185) solid;
 	box-shadow: 2px 4px 10px -5px;
 }
