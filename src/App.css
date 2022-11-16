@@ -1,19 +1,39 @@
 /* Global styles go in here please :) */
 .fb {
-  display: flex;
-  text-align: center;
-  flex-direction: column;
-  display: grid;
+	display: flex;
 }
 
 .row {
-  flex-direction: row;
+	flex-direction: row;
 }
 
 .mg-1 {
-  margin: 1rem;
+	margin: 1rem;
 }
 
 .no-td {
 	text-decoration: none;
+}
+
+.form-control {
+	padding: 0.5rem;
+	border-radius: 12px;
+	border: 3px solid #07243c;
+	font-size: 18px;
+	width: 20rem;
+}
+
+.btn {
+	cursor: pointer;
+	font-size: 18px;
+	border: 2px solid #07243c;
+	padding: 0.5rem;
+	border-radius: 12px;
+	transition: all 0.3s ease-in-out;
+	background-color: #82b0c9;
+	color: black;
+}
+
+.btn:hover {
+	background-color: #acc6d4;
 }
