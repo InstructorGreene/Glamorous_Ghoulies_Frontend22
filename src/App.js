@@ -7,23 +7,22 @@ import Navbar from "./components/Navbar";
 import NewBooking from "./components/NewBooking";
 import Register from "./components/Register";
 import ViewBookings from "./components/ViewBookings.jsx";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 
 const App = () => {
-  const [token, changeToken] = useState(window.localStorage.getItem("token"));
-  const client = new ApiClient();
+	const [token, changeToken] = useState(window.localStorage.getItem("token"));
+	const client = new ApiClient();
 
-  // Handle token once generated
-  const loggedIn = (token) => {
-    window.localStorage.setItem("token", token);
-    changeToken(token);
-  };
+	// Handle token once generated
+	const loggedIn = (token) => {
+		window.localStorage.setItem("token", token);
+		changeToken(token);
+	};
 
-  // const testBackend = async () => {
-  // 	let request = await client.getUsers();
-  // 	console.log(request.data);
-  // };
-
+	// const testBackend = async () => {
+	// 	let request = await client.getUsers();
+	// 	console.log(request.data);
+	// };
 
 	return (
 		<>
@@ -37,7 +36,10 @@ const App = () => {
 					}
 				/>
 				<Route path="/bookings">
-					<Route path="/bookings/new" element={<NewBooking />} />
+					<Route
+						path="/bookings/new"
+						element={<NewBooking client={client} />}
+					/>
 					<Route path="/bookings/view" element={<ViewBookings />} />
 				</Route>
 				<Route path="/register" element={<Register client={client} />} />

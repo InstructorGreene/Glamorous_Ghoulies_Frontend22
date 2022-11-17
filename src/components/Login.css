@@ -1,89 +1,91 @@
 body {
-  font-family: "Lato", sans-serif;
+	font-family: "Lato", sans-serif;
 }
 
 .form-group {
-  margin-bottom: 1rem;
+	margin-bottom: 1rem;
 }
 
 .main-head {
-  height: 150px;
-  background: #fff;
+	height: 150px;
+	background: #fff;
 }
 
 .sidenav {
-  height: 100%;
-  background-color: #0a3051;
-  overflow-x: hidden;
-  /* padding-top: 20px; */
+	height: 100%;
+	background-color: #0a3051;
+	overflow-x: hidden;
+	/* padding-top: 20px; */
 }
 
 .main {
-  padding: 0px 10px;
+	padding: 0px 10px;
 }
 
 @media screen and (max-height: 450px) {
-  .sidenav {
-    padding-top: 15px;
-  }
+	.sidenav {
+		padding-top: 15px;
+	}
 }
 
 @media screen and (max-width: 450px) {
-  .login-form {
-    margin-top: 20%;
-  }
+	.login-form {
+		margin-top: 20%;
+	}
 
-  .register-form {
-    margin-top: 10%;
-  }
+	.register-form {
+		margin-top: 10%;
+	}
 }
 
 @media screen and (min-width: 768px) {
-  .main {
-    margin-left: 32%;
-  }
+	.sidenav {
+		width: 40%;
+		position: fixed;
+		z-index: 1;
+		top: 0;
+		left: 0;
+	}
 
-  .sidenav {
-    width: 40%;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-  }
+	.login-form {
+		margin: auto;
+	}
 
-  .login-form {
-    margin: auto;
-  }
-
-  .register-form {
-    margin-top: 30%;
-  }
+	.register-form {
+		margin-top: 30%;
+	}
 }
 
 .login-main-text {
-  margin-top: 2%;
-  padding: 1px;
-  color: #fff;
-  text-align: center;
+	margin-top: 2%;
+	padding: 1px;
+	color: #fff;
+	text-align: center;
 }
 
 .login-main-text h2 {
-  font-weight: 300;
+	font-weight: 300;
 }
 
 .btn-black {
-  background-color: #82b0c9 !important;
-  color: #fff;
+	background-color: #82b0c9 !important;
+	color: #fff;
 }
 
 /* registration.jsx */
 .btn-warning {
-  margin-right: 15%;
-  margin-top: 1rem;
+	margin-right: 15%;
+	margin-top: 1rem;
 }
 /* end of registration.jsx */
 
 .stannington-carnival-sidebar {
-  margin-left: 25%;
-  margin-top: 0%;
+	margin-left: 25%;
+	margin-top: 0%;
+}
+
+.btn-container {
+	display: flex;
+	gap: 0.5rem;
+	justify-content: center;
 }
