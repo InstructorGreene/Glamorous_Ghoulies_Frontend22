@@ -1,0 +1,35 @@
+.showcase-item {
+	border-radius: 12px;
+	filter: drop-shadow(0 0 0.5rem #0a3051);
+	width: 30rem;
+	overflow: hidden;
+	transition: all 0.25s ease-in-out;
+	z-index: 0;
+}
+
+.showcase-item:hover .showcase-item-image {
+	transform: scale(1.2);
+}
+
+.showcase-item:hover {
+	filter: drop-shadow(0 0 0.75rem #3f82b8);
+}
+
+.showcase-item-image {
+	transition: all 0.25s ease-in-out;
+}
+
+.showcase-item-body {
+	background: rgb(95, 165, 226);
+	background: linear-gradient(
+		309deg,
+		rgba(95, 165, 226, 1) 0%,
+		rgba(155, 216, 236, 1) 100%
+	);
+	z-index: 1;
+	padding: 1.2rem;
+}
+.showcase-item-body p {
+	color: black;
+	margin: 0;
+}
