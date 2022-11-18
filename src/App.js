@@ -63,7 +63,7 @@ const App = () => {
 				<Route path="/bookings">
 					<Route
 						path="/bookings/new"
-						element={<NewBooking client={client} />}
+						element={<NewBooking client={client} token={token} />}
 					/>
 					<Route path="/bookings/view" element={<ViewBookings />} />
 				</Route>

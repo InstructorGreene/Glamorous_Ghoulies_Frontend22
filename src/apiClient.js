@@ -12,6 +12,12 @@ export class ApiClient {
 		});
 	}
 
+	getUserFromToken(token) {
+		return this.apiCall("get", `${url}token/${token}`, token).catch((error) => {
+			throw error;
+		});
+	}
+
 	login(username, password) {
 		return this.apiCall("post", `${url}auth`, {
 			username,
@@ -39,16 +45,9 @@ export class ApiClient {
 
 	// Add booking
 
-	addBooking(name, business, email, telephone, type, comments, status, userId) {
+	addBooking(booking) {
 		return this.apiCall("post", `${url}bookings`, {
-			name,
-			business,
-			email,
-			telephone,
-			type,
-			comments,
-			status,
-			userId,
+			...booking,
 		}).catch((error) => {
 			throw error;
 		});
