@@ -1,55 +1,14 @@
-/* Global styles go in here please :) */
-.fb {
-	display: flex;
+.home-header {
+	background-color: lightblue;
+	padding: 3rem;
+	background: rgb(95, 165, 226);
+	background: linear-gradient(
+		309deg,
+		rgba(95, 165, 226, 1) 0%,
+		rgba(155, 216, 236, 1) 100%
+	);
 }
 
-.row {
-	flex-direction: row;
-}
-
-.col {
-	flex-direction: column;
-}
-
-.mg-1 {
-	margin: 1rem;
-}
-
-.no-td {
-	text-decoration: none;
-}
-
-.centered {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.card {
-	border: 2px solid black;
-	border-radius: 20px;
-	padding: 1rem;
-}
-
-.form-control {
-	padding: 0.5rem;
-	border-radius: 12px;
-	border: 3px solid #07243c;
-	font-size: 18px;
-	width: 20rem;
-}
-
-.btn {
-	cursor: pointer;
-	font-size: 18px;
-	border: 2px solid #07243c;
-	padding: 0.5rem;
-	border-radius: 12px;
-	transition: all 0.3s ease-in-out;
-	background-color: #82b0c9;
-	color: black;
-}
-
-.btn:hover {
-	background-color: #acc6d4;
+.showcase {
+	padding: 2rem;
 }

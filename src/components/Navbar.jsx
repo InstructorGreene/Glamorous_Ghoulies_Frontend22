@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../images/stannington.jpg";
+import "../images/stannington-carnival-logo.jpg";
 import "./Navbar.css";
 
 const Navbar = (props) => {
@@ -17,14 +17,14 @@ const Navbar = (props) => {
 				<img
 					className="stannington-carnival-logo"
 					style={{ height: "100%" }}
-					src={require("../images/stannington.jpg")}
+					src={require("../images/stannington-carnival-logo.jpg")}
 					alt={"event it logo"}
 				/>
 			</Link>
-			<Link to="/">
-				<button className="nav-btn">Home</button>
-			</Link>
 			<div className="nav-buttons">
+				<Link to="/">
+					<button className="nav-btn">Home</button>
+				</Link>
 				<Link
 					style={!props.token ? { display: "block" } : { display: "none" }}
 					to="/register"
