@@ -10,7 +10,8 @@ const NewBooking = (props) => {
 		type: "",
 		comments: "",
 		status: "unpaid",
-		userId: "6373b0794befe87bfe7df08e",
+		// userId: props.client.getUserFromToken(props.token).data._id,
+
 		// TODO: Add
 		// Status should always be 'unpaid'
 		// UserId will need to be fetched from backend
@@ -27,17 +28,18 @@ const NewBooking = (props) => {
 
 	const submitHandler = async (event) => {
 		event.preventDefault();
+		let userId = (await props.client.getUserFromToken(props.token)).data._id;
 		try {
-			const res = await props.client.addBooking(
-				bookingDetails.name,
-				bookingDetails.business,
-				bookingDetails.email,
-				bookingDetails.telephone,
-				bookingDetails.type,
-				bookingDetails.comments,
-				bookingDetails.status,
-				bookingDetails.userId
-			);
+			const res = await props.client.addBooking({
+				name: bookingDetails.name,
+				business: bookingDetails.business,
+				email: bookingDetails.email,
+				telephone: bookingDetails.telephone,
+				type: bookingDetails.type,
+				comments: bookingDetails.comments,
+				status: bookingDetails.status,
+				userId: userId,
+			});
 			console.log(res.data.message);
 		} catch (error) {
 			alert("Something went wrong");
