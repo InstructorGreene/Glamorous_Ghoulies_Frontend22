@@ -13,12 +13,20 @@ import "./images/classic-cars.jpg";
 
 const App = () => {
 	const [token, changeToken] = useState(window.localStorage.getItem("token"));
-	const client = new ApiClient();
+	const client = new ApiClient(
+		() => token,
+		() => logout()
+	);
 
 	// Handle token once generated
 	const loggedIn = (token) => {
 		window.localStorage.setItem("token", token);
 		changeToken(token);
+	};
+
+	const logout = () => {
+		window.localStorage.setItem("token", undefined);
+		changeToken(undefined);
 	};
 
 	// const testBackend = async () => {
