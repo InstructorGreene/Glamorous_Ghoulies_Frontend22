@@ -3,10 +3,18 @@ const url = "http://localhost:3001/";
 // const url = "https://stannington-carnival-backend.onrender.com/";
 
 export class ApiClient {
+	constructor(tokenProvider, logoutHandler) {
+		this.tokenProvider = tokenProvider;
+		this.logoutHandler = logoutHandler;
+	}
+
 	apiCall(method, url, data) {
 		return axios({
 			method,
 			url,
+			headers: {
+				token: this.tokenProvider(),
+			},
 			data,
 		}).catch((error) => {
 			throw error;
