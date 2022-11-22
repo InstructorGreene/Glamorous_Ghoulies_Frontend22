@@ -17,6 +17,17 @@ const NewBooking = (props) => {
 		// UserId will need to be fetched from backend
 	});
 
+	const formCheck = (formItems) => {
+		let passed = true;
+		formItems.forEach((form) => {
+			if (!form) {
+				console.log("One was empty");
+				passed = false;
+			}
+		});
+		return passed;
+	};
+
 	const changeHandler = (event) => {
 		// Updates states on input box change
 		let fieldValue = event.target.value;
@@ -30,17 +41,30 @@ const NewBooking = (props) => {
 		event.preventDefault();
 		let userId = (await props.client.getUserFromToken(props.token)).data._id;
 		try {
-			const res = await props.client.addBooking({
-				name: bookingDetails.name,
-				business: bookingDetails.business,
-				email: bookingDetails.email,
-				telephone: bookingDetails.telephone,
-				type: bookingDetails.type,
-				comments: bookingDetails.comments,
-				status: bookingDetails.status,
-				userId: userId,
-			});
-			console.log(res.data.message);
+			if (
+				// Makes sure none of the required forms are left empty
+				formCheck([
+					bookingDetails.name,
+					bookingDetails.business,
+					bookingDetails.email,
+					bookingDetails.telephone,
+					bookingDetails.type,
+				])
+			) {
+				const res = await props.client.addBooking({
+					name: bookingDetails.name,
+					business: bookingDetails.business,
+					email: bookingDetails.email,
+					telephone: bookingDetails.telephone,
+					type: bookingDetails.type,
+					comments: bookingDetails.comments,
+					status: bookingDetails.status,
+					userId: userId,
+				});
+				console.log(res.data.message);
+			} else {
+				alert("All of the required forms must be filled out");
+			}
 		} catch (error) {
 			alert("Something went wrong");
 			throw error;
