@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import toastr from "toastr";
+import "toastr/build/toastr.min.css";
 import "./NewBooking.css";
 
 const NewBooking = (props) => {
@@ -11,6 +13,13 @@ const NewBooking = (props) => {
 		comments: "",
 		status: "unpaid",
 	});
+
+
+	toastr.options = {
+		positionClass: "toast-bottom-right",
+		closeButton: true,
+	};
+
 
 	const changeHandler = (event) => {
 		// Updates states on input box change
@@ -25,6 +34,7 @@ const NewBooking = (props) => {
 		event.preventDefault();
 		let userId = (await props.client.getUserFromToken(props.token)).data._id;
 		try {
+
 			// TODO: Pitch Id of -1 should be set
 			const res = await props.client.addBooking({
 				name: bookingDetails.name,
@@ -37,8 +47,15 @@ const NewBooking = (props) => {
 				userId: userId,
 			});
 			console.log(res.data.message);
+			toastr["success"](
+				"Your booking has been submitted. We'll be in contact with you soon.",
+				"Success!"
+			);
 		} catch (error) {
-			alert("Something went wrong");
+			toastr["error"](
+				"Something has gone wrong while submitting your booking, please contact us directly.",
+				"Error!"
+			);
 			throw error;
 		}
 	};
