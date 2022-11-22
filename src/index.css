@@ -19,7 +19,7 @@ code {
 
 .header-font {
 	font-family: "Barlow Semi Condensed", sans-serif;
-	font-weight: 500;
+	font-weight: bold;
 }
 
 .fb {
@@ -68,15 +68,25 @@ code {
 
 .btn {
 	cursor: pointer;
-	font-size: 18px;
-	border: 2px solid #07243c;
-	padding: 0.5rem;
+	font-size: 16px;
+	border: none;
+	padding: 0.7rem 1rem;
 	border-radius: 12px;
 	transition: all 0.3s ease-in-out;
-	background-color: #82b0c9;
-	color: black;
+	background-color: #0a3153;
+	color: white;
 }
 
 .btn:hover {
-	background-color: #acc6d4;
+	background-color: #12518b;
+}
+
+.form-input {
+	resize: vertical;
+	/* Just for textarea elements */
+	font-size: 15px;
+	border-radius: 6px;
+	border: 1px solid #555;
+	padding: 0.6rem;
+	font-family: Arial, Helvetica, sans-serif;
 }

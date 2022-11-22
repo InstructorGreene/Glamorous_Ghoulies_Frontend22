@@ -10,23 +10,7 @@ const NewBooking = (props) => {
 		type: "",
 		comments: "",
 		status: "unpaid",
-		// userId: props.client.getUserFromToken(props.token).data._id,
-
-		// TODO: Add
-		// Status should always be 'unpaid'
-		// UserId will need to be fetched from backend
 	});
-
-	const formCheck = (formItems) => {
-		let passed = true;
-		formItems.forEach((form) => {
-			if (!form) {
-				console.log("One was empty");
-				passed = false;
-			}
-		});
-		return passed;
-	};
 
 	const changeHandler = (event) => {
 		// Updates states on input box change
@@ -41,30 +25,18 @@ const NewBooking = (props) => {
 		event.preventDefault();
 		let userId = (await props.client.getUserFromToken(props.token)).data._id;
 		try {
-			if (
-				// Makes sure none of the required forms are left empty
-				formCheck([
-					bookingDetails.name,
-					bookingDetails.business,
-					bookingDetails.email,
-					bookingDetails.telephone,
-					bookingDetails.type,
-				])
-			) {
-				const res = await props.client.addBooking({
-					name: bookingDetails.name,
-					business: bookingDetails.business,
-					email: bookingDetails.email,
-					telephone: bookingDetails.telephone,
-					type: bookingDetails.type,
-					comments: bookingDetails.comments,
-					status: bookingDetails.status,
-					userId: userId,
-				});
-				console.log(res.data.message);
-			} else {
-				alert("All of the required forms must be filled out");
-			}
+			// TODO: Pitch Id of -1 should be set
+			const res = await props.client.addBooking({
+				name: bookingDetails.name,
+				business: bookingDetails.business,
+				email: bookingDetails.email,
+				telephone: bookingDetails.telephone,
+				type: bookingDetails.type,
+				comments: bookingDetails.comments,
+				status: bookingDetails.status,
+				userId: userId,
+			});
+			console.log(res.data.message);
 		} catch (error) {
 			alert("Something went wrong");
 			throw error;
@@ -73,13 +45,15 @@ const NewBooking = (props) => {
 
 	return (
 		<div className="centered" style={{ paddingTop: "2rem" }}>
-			<div className="card">
-				<div className="title">
-					<h2>Booking Registration</h2>
+			<div>
+				<div className="title header-font centered">
+					<h1>Booking Registration</h1>
 				</div>
 				<form onSubmit={(event) => submitHandler(event)}>
-					<div className="fb col">
-						<label>Select type of stall:</label>
+					<div className="fb col booking-form">
+						<label>
+							<h2 className="header-font">Select type of stall:</h2>
+						</label>
 						<label>
 							<input
 								type="radio"
@@ -104,57 +78,73 @@ const NewBooking = (props) => {
 								name="type"
 								value="Charity"
 								onChange={(event) => changeHandler(event)}
+								required
 							/>
 							Charity
 						</label>
 
-						<h2>Business/Charity name</h2>
+						<h2 className="header-font">Business/Charity name</h2>
 						<input
+							className="form-input"
 							name="business"
 							type="text"
 							placeholder="Business/charity name"
 							value={bookingDetails.business}
 							onChange={(event) => changeHandler(event)}
+							required
 						/>
 
-						<h2>Full name</h2>
+						<h2 className="header-font">Full name</h2>
 						<input
+							className="form-input"
 							name="name"
 							type="text"
 							placeholder="Full name"
 							value={bookingDetails.name}
 							onChange={(event) => changeHandler(event)}
+							required
 						/>
 
-						<h2>Email</h2>
+						<h2 className="header-font">Email</h2>
 						<input
+							className="form-input"
 							name="email"
 							type="email"
 							value={bookingDetails.email}
 							placeholder="Email"
 							onChange={(event) => changeHandler(event)}
+							required
 						/>
-						<h2>Phone number</h2>
+						<h2 className="header-font">Phone number</h2>
 						<input
+							className="form-input"
 							name="telephone"
 							type="text"
 							value={bookingDetails.telephone}
 							onChange={(event) => changeHandler(event)}
 							placeholder="Phone number"
+							required
 						/>
-						<h2>
+						<h2 className="header-font">
 							Any additional information that you want to share before booking?
 						</h2>
 						<textarea
+							className="form-input"
 							name="comments"
 							type="text"
 							value={bookingDetails.comments}
 							onChange={(event) => changeHandler(event)}
-							placeholder="Enter yout comment here..."
+							placeholder="Enter your comment here..."
 						/>
-						<button className="btn" type="submit">
-							Submit
-						</button>
+						<div className="centered">
+							<button
+								className="btn"
+								type="submit"
+								style={{ marginTop: "2rem" }}
+							>
+								Submit
+							</button>
+						</div>
 					</div>
 				</form>
 			</div>
