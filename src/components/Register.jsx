@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import toastr from "toastr";
 import "../App.css";
 import "./Login.css";
 
@@ -8,6 +10,12 @@ const Register = (props) => {
 		email: "",
 		password: "",
 	});
+
+	toastr.options = {
+		positionClass: "toast-bottom-right",
+		closeButton: true,
+	};
+	const navigateTo = useNavigate();
 
 	const meetsRequirements = (entries) => {
 		// HTML handles email error checking
@@ -39,9 +47,13 @@ const Register = (props) => {
 				userDetails.email,
 				userDetails.password
 			);
-			alert("Account created successfully!");
+			toastr["success"]("Account created successfully!", "Success!");
+			navigateTo("/");
 		} catch (e) {
-			alert("Something went wrong :(");
+			toastr["error"](
+				"An error occurred while creating your account. If the error continues please contact us directly.",
+				"Error!"
+			);
 			throw e;
 		}
 	};

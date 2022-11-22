@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import toastr from "toastr";
 import "../App.css";
 import "./Login.css";
 
@@ -8,6 +10,13 @@ const Login = (props) => {
 		email: "",
 		password: "",
 	});
+
+	toastr.options = {
+		positionClass: "toast-bottom-right",
+		closeButton: true,
+	};
+
+	const navigateTo = useNavigate();
 
 	const changeHandler = (event) => {
 		// Updates states on input box change
@@ -27,9 +36,12 @@ const Login = (props) => {
 				userDetails.password
 			);
 			props.loggedIn(res.data.token);
-			console.log(`success: ${res.data.token}`);
+			toastr.options.closeButton = true;
+			toastr["success"]("Logged in successfully.", "Success!");
+			navigateTo("/");
 		} catch (error) {
-			alert("Incorrect details");
+			toastr.options.closeButton = true;
+			toastr["error"]("Those details did not match any account.", "Error!");
 			throw error;
 		}
 	};

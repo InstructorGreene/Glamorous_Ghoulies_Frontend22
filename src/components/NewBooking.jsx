@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import toastr from "toastr";
+import "toastr/build/toastr.min.css";
 import "./NewBooking.css";
 
 const NewBooking = (props) => {
@@ -10,22 +12,11 @@ const NewBooking = (props) => {
 		type: "",
 		comments: "",
 		status: "unpaid",
-		// userId: props.client.getUserFromToken(props.token).data._id,
-
-		// TODO: Add
-		// Status should always be 'unpaid'
-		// UserId will need to be fetched from backend
 	});
 
-	const formCheck = (formItems) => {
-		let passed = true;
-		formItems.forEach((form) => {
-			if (!form) {
-				console.log("One was empty");
-				passed = false;
-			}
-		});
-		return passed;
+	toastr.options = {
+		positionClass: "toast-bottom-right",
+		closeButton: true,
 	};
 
 	const changeHandler = (event) => {
@@ -41,32 +32,27 @@ const NewBooking = (props) => {
 		event.preventDefault();
 		let userId = (await props.client.getUserFromToken(props.token)).data._id;
 		try {
-			if (
-				// Makes sure none of the required forms are left empty
-				formCheck([
-					bookingDetails.name,
-					bookingDetails.business,
-					bookingDetails.email,
-					bookingDetails.telephone,
-					bookingDetails.type,
-				])
-			) {
-				const res = await props.client.addBooking({
-					name: bookingDetails.name,
-					business: bookingDetails.business,
-					email: bookingDetails.email,
-					telephone: bookingDetails.telephone,
-					type: bookingDetails.type,
-					comments: bookingDetails.comments,
-					status: bookingDetails.status,
-					userId: userId,
-				});
-				console.log(res.data.message);
-			} else {
-				alert("All of the required forms must be filled out");
-			}
+			// TODO: Add pitchNo field
+			const res = await props.client.addBooking({
+				name: bookingDetails.name,
+				business: bookingDetails.business,
+				email: bookingDetails.email,
+				telephone: bookingDetails.telephone,
+				type: bookingDetails.type,
+				comments: bookingDetails.comments,
+				status: bookingDetails.status,
+				userId: userId,
+			});
+			console.log(res.data.message);
+			toastr["success"](
+				"Your booking has been submitted. We'll be in contact with you soon.",
+				"Success!"
+			);
 		} catch (error) {
-			alert("Something went wrong");
+			toastr["error"](
+				"Something has gone wrong while submitting your booking, please contact us directly.",
+				"Error!"
+			);
 			throw error;
 		}
 	};
