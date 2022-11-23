@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const StaffPortal = () => {
+const StaffPortal = (props) => {
 	return (
 		<div className="fb col mg-2 centered" style={{ gap: "3rem" }}>
 			<div className="header-font" style={{ fontSize: "32px" }}>
