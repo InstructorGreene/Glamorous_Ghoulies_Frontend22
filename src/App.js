@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import React, { useEffect, useMemo, useState } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { ApiClient } from "./apiClient";
 import "./App.css";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
 import NewBooking from "./components/NewBooking";
+import PrivateRoute from "./components/PrivateRoute";
 import Register from "./components/Register";
 import ShowcaseItem from "./components/ShowcaseItem";
 import StaffPortal from "./components/StaffPortal";
@@ -13,11 +14,13 @@ import "./images/classic-cars.jpg";
 // import "bootstrap/dist/css/bootstrap.min.css";
 
 const App = () => {
+	const navTo = useNavigate(); // Used for redirecting user on logout
 	const [token, changeToken] = useState(window.localStorage.getItem("token"));
 	const client = new ApiClient(
 		() => token,
 		() => logout()
 	);
+	const [userRole, setUserRole] = useState(undefined); // userRole stored in a state for PrivateRoute
 
 	// Handle token once generated
 	const loggedIn = (token) => {
@@ -28,12 +31,23 @@ const App = () => {
 	const logout = () => {
 		window.localStorage.setItem("token", undefined);
 		changeToken(undefined);
+		navTo("/");
 	};
 
-	// const testBackend = async () => {
-	// 	let request = await client.getUsers();
-	// 	console.log(request.data);
-	// };
+	// Get user role and store in state
+	useEffect(() => {
+		const fetch = async () => {
+			// When user logs themselves out, set userRole back to undefined
+			if (!token) {
+				setUserRole(undefined);
+			} else {
+				// Set corresponding userRole of the logged in account
+				let role = (await client.getCurrentUser(token)).data.role;
+				setUserRole(role);
+			}
+		};
+		fetch();
+	}, [client, token]);
 
 	return (
 		<>
@@ -79,7 +93,16 @@ const App = () => {
 						element={<ViewBookings client={client} token={token} />}
 					/>
 				</Route>
-				<Route path="/staff" element={<StaffPortal />} />
+				<Route
+					element={
+						<PrivateRoute
+							userRole={userRole}
+							allowed={["admin", "finance", "committee", "allocator"]}
+						/>
+					}
+				>
+					<Route path="/staff" element={<StaffPortal />} />
+				</Route>
 				<Route path="/register" element={<Register client={client} />} />
 			</Routes>
 		</>
