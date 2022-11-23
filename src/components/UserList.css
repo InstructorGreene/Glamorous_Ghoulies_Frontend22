@@ -19,6 +19,10 @@
 	margin-top: -1px;
 }
 
+.user-li:nth-child(2n - 1) {
+	background-color: #eee;
+}
+
 .user-li:first-child {
 	border-top: none;
 }
