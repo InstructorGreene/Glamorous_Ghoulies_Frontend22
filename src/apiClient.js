@@ -61,7 +61,6 @@ export class ApiClient {
 
 	getMyBookings(token) {
 		let test = this.apiCall("get", `${url}bookings/${token}`);
-		console.log(test);
 		return test;
 	}
 
