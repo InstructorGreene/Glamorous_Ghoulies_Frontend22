@@ -52,6 +52,11 @@ export class ApiClient {
 		return this.apiCall("put", `${url}${id}`, { username, email, password });
 	}
 
+	// Get Current User
+	getCurrentUser(token) {
+		return this.apiCall("get", `${url}token/${token}`);
+	}
+
 	// Add booking
 
 	addBooking(booking) {
