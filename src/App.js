@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import NewBooking from "./components/NewBooking";
 import Register from "./components/Register";
 import ShowcaseItem from "./components/ShowcaseItem";
+import StaffPortal from "./components/StaffPortal";
 import ViewBookings from "./components/ViewBookings.jsx";
 import "./images/classic-cars.jpg";
 // import "bootstrap/dist/css/bootstrap.min.css";
@@ -36,7 +37,7 @@ const App = () => {
 
 	return (
 		<>
-			<Navbar token={token} changeToken={changeToken} />
+			<Navbar token={token} changeToken={changeToken} client={client} />
 			<Routes>
 				{/* Landing page (Home) */}
 				<Route
@@ -78,6 +79,7 @@ const App = () => {
 						element={<ViewBookings client={client} token={token} />}
 					/>
 				</Route>
+				<Route path="/staff" element={<StaffPortal />} />
 				<Route path="/register" element={<Register client={client} />} />
 			</Routes>
 		</>

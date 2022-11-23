@@ -1,15 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../images/stannington-carnival-logo.jpg";
 import "./Navbar.css";
 
 const Navbar = (props) => {
+	const [userRole, setUserRole] = useState(undefined);
+
 	const logout = (changeToken) => {
 		// removes token from local storage
 		// removes the token from app.js
 		window.localStorage.removeItem("token");
 		changeToken(undefined);
 	};
+
+	// Handles changing userRole state (when user token changes)
+	useEffect(() => {
+		const callApi = async () => {
+			if (props.token) {
+				setUserRole((await props.client.getCurrentUser(props.token)).data.role);
+			} else {
+				setUserRole(undefined);
+			}
+		};
+		callApi();
+	}, [props.client, props.token]);
 
 	return (
 		<div className="navbar fb row">
@@ -37,6 +51,13 @@ const Navbar = (props) => {
 				>
 					<button className="nav-btn">Login</button>
 				</Link>
+				{["admin", "finance", "committee", "allocator"].includes(userRole) ? (
+					<Link to="/staff">
+						<button className="nav-btn">Staff Portal</button>
+					</Link>
+				) : (
+					<></>
+				)}
 				<Link to={!props.token ? "/login" : "/bookings/new"}>
 					<button className="nav-btn">Book</button>
 				</Link>
