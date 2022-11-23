@@ -37,7 +37,7 @@ export class ApiClient {
 	}
 
 	getUsers() {
-		return this.apiCall("get", url);
+		return this.apiCall("get", `${url}users`);
 	}
 
 	addUser(username, email, password) {

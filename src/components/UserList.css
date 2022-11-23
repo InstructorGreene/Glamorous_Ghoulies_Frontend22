@@ -1,0 +1,27 @@
+.user-list {
+	border-radius: 20px;
+	border: 1px solid #aaa;
+	overflow: hidden;
+}
+
+.user-list p {
+	margin: 0.5rem;
+}
+
+.user-li {
+	padding-inline: 0.5rem;
+	border-top: 1px solid #aaa;
+	border-bottom: 1px solid #aaa;
+}
+
+.user-li:nth-child(n + 2) {
+	/* Prevent double border */
+	margin-top: -1px;
+}
+
+.user-li:first-child {
+	border-top: none;
+}
+.user-li:last-child {
+	border-bottom: none;
+}
