@@ -1,0 +1,5 @@
+.booking-form h2 {
+	--formItemPadding: 0.8rem;
+	margin-top: var(--formItemPadding);
+	margin-bottom: var(--formItemPadding);
+}
