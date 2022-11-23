@@ -78,7 +78,7 @@ const BookingCard = (props) => {
 					style={{ marginTop: "auto", gap: "0.5rem" }}
 				>
 					<div className="centered fb" style={{ gap: "0.5rem" }}>
-						{!props.pitchNo || props.pitchNo === -1 ? (
+						{!props.pitchNo || props.pitchNo === "-1" ? (
 							""
 						) : (
 							<>
