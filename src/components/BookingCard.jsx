@@ -1,7 +1,7 @@
 import React from "react";
 import { FaCheckCircle, FaHandshake, FaHeart, FaPhone } from "react-icons/fa";
 import { GiSewingNeedle } from "react-icons/gi";
-import { MdOutlineError } from "react-icons/md";
+import { MdConfirmationNumber, MdOutlineError } from "react-icons/md";
 import "./BookingCard.css";
 
 const BookingCard = (props) => {
@@ -74,14 +74,29 @@ const BookingCard = (props) => {
 					)}
 				</div>
 				<div
-					className="card-type fb row centered"
-					style={{
-						marginTop: "auto",
-						backgroundColor: statusTypes[props.status.toLowerCase()].colour,
-					}}
+					className={"fb col centered"}
+					style={{ marginTop: "auto", gap: "0.5rem" }}
 				>
-					{statusTypes[props.status.toLowerCase()].icon}
-					<p className="mg-0">{capitaliseFirstLetter(props.status)}</p>
+					<div className="centered fb" style={{ gap: "0.5rem" }}>
+						{!props.pitchNo || props.pitchNo === -1 ? (
+							""
+						) : (
+							<>
+								<MdConfirmationNumber />
+								{`Allocated Pitch Number: ${props.pitchNo}`}
+							</>
+						)}
+					</div>
+					<div
+						className="card-type centered"
+						style={{
+							width: "100%",
+							backgroundColor: statusTypes[props.status.toLowerCase()].colour,
+						}}
+					>
+						{statusTypes[props.status.toLowerCase()].icon}
+						<p className="mg-0">{capitaliseFirstLetter(props.status)}</p>
+					</div>
 				</div>
 			</div>
 		</div>

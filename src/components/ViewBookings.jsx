@@ -23,6 +23,7 @@ const ViewBookings = (props) => {
 					type={stall.type}
 					comments={stall.comments}
 					status={stall.status}
+					pitchNo={stall.pitchNo}
 				/>
 			);
 		});
