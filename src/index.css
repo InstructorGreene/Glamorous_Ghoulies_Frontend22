@@ -34,6 +34,10 @@ code {
 	flex-direction: column;
 }
 
+.mg-0 {
+	margin: 0;
+}
+
 .mg-1 {
 	margin: 1rem;
 }
