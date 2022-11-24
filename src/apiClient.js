@@ -40,16 +40,25 @@ export class ApiClient {
 		return this.apiCall("get", `${url}users`);
 	}
 
-	addUser(username, email, password) {
-		return this.apiCall("post", url, { username, email, password });
+	addUser(username, email, password, role) {
+		return this.apiCall("post", `${url}users`, {
+			username,
+			email,
+			password,
+			role,
+		});
 	}
 
 	removeUser(id) {
-		return this.apiCall("delete", `${url}${id}`);
+		return this.apiCall("delete", `${url}users/${id}`);
 	}
 
 	updateUser(id, username, email, password) {
-		return this.apiCall("put", `${url}${id}`, { username, email, password });
+		return this.apiCall("put", `${url}users/${id}`, {
+			username,
+			email,
+			password,
+		});
 	}
 
 	// Get Current User

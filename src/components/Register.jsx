@@ -32,7 +32,8 @@ const Register = (props) => {
 		return true;
 	};
 
-	const submitHandler = async () => {
+	const submitHandler = async (event) => {
+		event.preventDefault();
 		if (
 			!meetsRequirements({
 				username: userDetails.username,
@@ -45,7 +46,8 @@ const Register = (props) => {
 			await props.client.addUser(
 				userDetails.username,
 				userDetails.email,
-				userDetails.password
+				userDetails.password,
+				"holder"
 			);
 			toastr["success"]("Account created successfully!", "Success!");
 			navigateTo("/");
