@@ -66,15 +66,23 @@ export class ApiClient {
 		return this.apiCall("get", `${url}token/${token}`);
 	}
 
-	// Add booking
-
 	getMyBookings(token) {
 		let test = this.apiCall("get", `${url}bookings/${token}`);
 		return test;
 	}
 
+	// Add booking
 	addBooking(booking) {
 		return this.apiCall("post", `${url}bookings`, {
+			...booking,
+		}).catch((error) => {
+			throw error;
+		});
+	}
+
+	//
+	updateBooking(booking) {
+		return this.apiCall("put", `${url}bookings/${booking._id}`, {
 			...booking,
 		}).catch((error) => {
 			throw error;

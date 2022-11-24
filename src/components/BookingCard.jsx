@@ -37,7 +37,7 @@ const BookingCard = (props) => {
 	};
 
 	return (
-		<div className="booking-card">
+		<div className={`booking-card ${props.isSelected ? "selected" : ""}`}>
 			<div className="fb col" style={{ height: "100%" }}>
 				<div
 					className="fb row"
