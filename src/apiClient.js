@@ -80,12 +80,17 @@ export class ApiClient {
 		});
 	}
 
-	//
+	// Update Booking
 	updateBooking(booking) {
 		return this.apiCall("put", `${url}bookings/${booking._id}`, {
 			...booking,
 		}).catch((error) => {
 			throw error;
 		});
+	}
+
+	// Check pitchNo already allocated
+	checkPitchNo(pitchNo) {
+		return this.apiCall("get", `${url}pitchno/${pitchNo}`);
 	}
 }

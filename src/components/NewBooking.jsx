@@ -12,14 +12,13 @@ const NewBooking = (props) => {
 		type: "",
 		comments: "",
 		status: "unpaid",
+		pitchNo: -1,
 	});
-
 
 	toastr.options = {
 		positionClass: "toast-bottom-right",
 		closeButton: true,
 	};
-
 
 	const changeHandler = (event) => {
 		// Updates states on input box change
@@ -34,7 +33,6 @@ const NewBooking = (props) => {
 		event.preventDefault();
 		let userId = (await props.client.getUserFromToken(props.token)).data._id;
 		try {
-
 			// TODO: Pitch Id of -1 should be set
 			const res = await props.client.addBooking({
 				name: bookingDetails.name,
@@ -44,6 +42,7 @@ const NewBooking = (props) => {
 				type: bookingDetails.type,
 				comments: bookingDetails.comments,
 				status: bookingDetails.status,
+				pitchNo: bookingDetails.pitchNo,
 				userId: userId,
 			});
 			console.log(res.data.message);

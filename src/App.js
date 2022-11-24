@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { ApiClient } from "./apiClient";
 import "./App.css";
+import Allocation from "./components/Allocation";
 import Finance from "./components/Finance.jsx";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
@@ -10,8 +11,9 @@ import PrivateRoute from "./components/PrivateRoute";
 import Register from "./components/Register";
 import ShowcaseItem from "./components/ShowcaseItem";
 import StaffPortal from "./components/StaffPortal";
-import ViewBookings from "./components/ViewBookings.jsx";
+import ViewBookings from "./components/ViewBookings";
 import "./images/classic-cars.jpg";
+
 // import "bootstrap/dist/css/bootstrap.min.css";
 
 const App = () => {
@@ -114,6 +116,10 @@ const App = () => {
 					<Route
 						path="/staff/finance"
 						element={<Finance client={client} token={token} />}
+					/>
+					<Route
+						path="/staff/allocation"
+						element={<Allocation client={client} token={token} />}
 					/>
 				</Route>
 				<Route path="/register" element={<Register client={client} />} />
