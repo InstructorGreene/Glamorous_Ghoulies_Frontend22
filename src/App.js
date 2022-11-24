@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { ApiClient } from "./apiClient";
 import "./App.css";
+import Finance from "./components/Finance.jsx";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
 import NewBooking from "./components/NewBooking";
@@ -9,7 +10,6 @@ import PrivateRoute from "./components/PrivateRoute";
 import Register from "./components/Register";
 import ShowcaseItem from "./components/ShowcaseItem";
 import StaffPortal from "./components/StaffPortal";
-import UserList from "./components/UserList";
 import ViewBookings from "./components/ViewBookings.jsx";
 import "./images/classic-cars.jpg";
 // import "bootstrap/dist/css/bootstrap.min.css";
@@ -17,10 +17,12 @@ import "./images/classic-cars.jpg";
 const App = () => {
 	const navTo = useNavigate(); // Used for redirecting user on logout
 	const [token, changeToken] = useState(window.localStorage.getItem("token"));
+	/* eslint-disable */
 	const client = new ApiClient(
 		() => token,
 		() => logout()
 	);
+	/* eslint-enable */
 	const [userRole, setUserRole] = useState(undefined); // userRole stored in a state for PrivateRoute
 
 	// Handle token once generated
@@ -84,12 +86,6 @@ const App = () => {
 						<Login loggedIn={(token) => loggedIn(token)} client={client} />
 					}
 				/>
-				<Route
-					path="/userlist"
-					client={client}
-					token={token}
-					element={<UserList client={client} token={token} />}
-				/>
 				<Route path="/bookings">
 					<Route
 						path="/bookings/new"
@@ -97,7 +93,13 @@ const App = () => {
 					/>
 					<Route
 						path="/bookings/view"
-						element={<ViewBookings client={client} token={token} />}
+						element={
+							<>
+								{" "}
+								<h1 className="header-font title centered">Your bookings:</h1>
+								<ViewBookings client={client} token={token} />
+							</>
+						}
 					/>
 				</Route>
 				<Route
@@ -109,6 +111,10 @@ const App = () => {
 					}
 				>
 					<Route path="/staff" element={<StaffPortal />} />
+					<Route
+						path="/staff/finance"
+						element={<Finance client={client} token={token} />}
+					/>
 				</Route>
 				<Route path="/register" element={<Register client={client} />} />
 			</Routes>

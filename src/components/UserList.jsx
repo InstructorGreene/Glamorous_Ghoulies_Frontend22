@@ -21,6 +21,7 @@ const UserList = (props) => {
 				<div
 					onClick={() => {
 						setSelected(i);
+						props.setSelectedUser(user.token);
 					}}
 					className="fb row user-li mg-0"
 					style={

@@ -3,28 +3,44 @@ import BookingCard from "./BookingCard";
 
 const ViewBookings = (props) => {
 	const [bookings, setBookings] = useState(undefined);
+	const [selected, setSelected] = useState(-1);
 
 	useEffect(() => {
 		const callApi = async () => {
-			setBookings((await props.client.getMyBookings(props.token)).data);
+			if (props.user === undefined) {
+				setBookings((await props.client.getMyBookings(props.token)).data);
+			} else {
+				setBookings((await props.client.getMyBookings(props.user)).data);
+			}
 		};
 		callApi();
-	}, [props.client, props.token]);
+	}, [props.client, props.token, props.user, props.updated]);
+
+	//TODO: Setup prop of user to search, if prop != undefined, fetch, otherwise do line 8
 
 	const buildBookings = () => {
 		let existingBookings = bookings?.map((stall, i) => {
 			return (
-				<BookingCard
+				<div
 					key={i}
-					name={stall.name}
-					business={stall.business}
-					email={stall.email}
-					telephone={stall.telephone}
-					type={stall.type}
-					comments={stall.comments}
-					status={stall.status}
-					pitchNo={stall.pitchNo}
-				/>
+					onClick={() => {
+						props.setSelectedBooking(stall);
+						console.log(stall);
+						setSelected(i);
+					}}
+				>
+					<BookingCard
+						name={stall.name}
+						business={stall.business}
+						email={stall.email}
+						telephone={stall.telephone}
+						type={stall.type}
+						comments={stall.comments}
+						status={stall.status}
+						pitchNo={stall.pitchNo}
+						isSelected={i === selected}
+					/>
+				</div>
 			);
 		});
 		//TODO: test whether this return can be refactored or not
@@ -33,10 +49,9 @@ const ViewBookings = (props) => {
 
 	return (
 		<>
-			<h1 className="header-font title centered">Your bookings:</h1>
 			<div
 				className="fb row mg-1 centered"
-				style={{ gap: "2rem", flexWrap: "wrap" }}
+				style={{ gap: "1rem", flexWrap: "wrap" }}
 			>
 				{buildBookings()}
 			</div>
