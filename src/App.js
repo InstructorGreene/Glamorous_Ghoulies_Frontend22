@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { ApiClient } from "./apiClient";
 import "./App.css";
@@ -9,6 +9,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import Register from "./components/Register";
 import ShowcaseItem from "./components/ShowcaseItem";
 import StaffPortal from "./components/StaffPortal";
+import UserList from "./components/UserList";
 import ViewBookings from "./components/ViewBookings.jsx";
 import "./images/classic-cars.jpg";
 // import "bootstrap/dist/css/bootstrap.min.css";
@@ -82,6 +83,12 @@ const App = () => {
 					element={
 						<Login loggedIn={(token) => loggedIn(token)} client={client} />
 					}
+				/>
+				<Route
+					path="/userlist"
+					client={client}
+					token={token}
+					element={<UserList client={client} token={token} />}
 				/>
 				<Route path="/bookings">
 					<Route
