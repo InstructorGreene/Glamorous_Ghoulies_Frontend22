@@ -80,7 +80,7 @@ export class ApiClient {
 		});
 	}
 
-	//
+	// Update Booking
 	updateBooking(booking) {
 		return this.apiCall("put", `${url}bookings/${booking._id}`, {
 			...booking,
@@ -89,16 +89,21 @@ export class ApiClient {
 		});
 	}
 
+	// Check pitchNo already allocated
+	checkPitchNo(pitchNo) {
+		return this.apiCall("get", `${url}pitchno/${pitchNo}`);
+
 	getAllBookings() {
 		return this.apiCall("get", `${url}bookings`);
 	}
 
-	// Get proportions
+
 	getProportions() {
 		return this.apiCall("get", `${url}proportions`);
 	}
 
 	getTotalAssigned() {
 		return this.apiCall("get", `${url}assigned`);
+
 	}
 }

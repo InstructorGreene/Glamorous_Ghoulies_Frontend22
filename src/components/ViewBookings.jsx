@@ -25,7 +25,6 @@ const ViewBookings = (props) => {
 					key={i}
 					onClick={() => {
 						props.setSelectedBooking(stall);
-						console.log(stall);
 						setSelected(i);
 					}}
 				>
