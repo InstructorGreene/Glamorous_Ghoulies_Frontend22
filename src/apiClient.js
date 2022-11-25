@@ -88,4 +88,17 @@ export class ApiClient {
 			throw error;
 		});
 	}
+
+	getAllBookings() {
+		return this.apiCall("get", `${url}bookings`);
+	}
+
+	// Get proportions
+	getProportions() {
+		return this.apiCall("get", `${url}proportions`);
+	}
+
+	getTotalAssigned() {
+		return this.apiCall("get", `${url}assigned`);
+	}
 }
