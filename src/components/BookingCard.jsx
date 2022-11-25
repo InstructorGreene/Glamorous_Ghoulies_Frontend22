@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaCheckCircle, FaHandshake, FaHeart, FaPhone } from "react-icons/fa";
 import { GiSewingNeedle } from "react-icons/gi";
 import { MdConfirmationNumber, MdOutlineError } from "react-icons/md";
 import "./BookingCard.css";
 
 const BookingCard = (props) => {
+	// const [editableFields, setEditableFields] = useState({
+	// 	business: props.business,
+	// 	name: props.name,
+	// 	email: props.email,
+	// 	telephone: props.telephone,
+	// });
+
 	const bookingTypes = {
 		craft: {
 			icon: <GiSewingNeedle />,
@@ -31,6 +38,49 @@ const BookingCard = (props) => {
 		},
 	};
 
+	// useEffect(() => {
+	// 	const updateApi = async () => {
+	// 		console.log("saving");
+	// 		console.log(
+	// 			Object.assign(
+	// 				{},
+	// 				{
+	// 					_id: props._id,
+	// 					name: props.name,
+	// 					business: props.business,
+	// 					email: props.email,
+	// 					telephone: props.telephone,
+	// 					type: props.type,
+	// 					comments: props.comments,
+	// 					status: props.status,
+	// 					userId: props.userId,
+	// 					pitchNo: props.pitchNo,
+	// 				},
+	// 				editableFields
+	// 			)
+	// 		);
+	// 		await props.client.updateBooking(
+	// 			({
+	// 				_id: props._id,
+	// 				name: props.name,
+	// 				business: props.business,
+	// 				email: props.email,
+	// 				telephone: props.telephone,
+	// 				type: props.type,
+	// 				comments: props.comments,
+	// 				status: props.status,
+	// 				userId: props.userId,
+	// 				pitchNo: props.pitchNo,
+	// 			},
+	// 			editableFields)
+	// 		);
+	// 	};
+	// 	if (props.saveEdits) {
+	// 		updateApi();
+	// 		props.setSaveEdits(false);
+	// 	}
+	// }, [props.saveEdits, props.client, props.editableFields, editableFields]);
+
 	// Just for payment status
 	const capitaliseFirstLetter = (str) => {
 		return str.charAt(0).toUpperCase() + str.slice(1);
@@ -46,7 +96,19 @@ const BookingCard = (props) => {
 						justifyContent: "space-between",
 					}}
 				>
-					<p className="card-bold mg-0">{props.business}</p>
+					<p
+						className="card-bold mg-0"
+						contentEditable={props.editable}
+						// onInput={(e) => {
+						// 	setEditableFields({
+						// 		...editableFields,
+						// 		business: e.currentTarget.textContent,
+						// 	});
+						// 	console.log(editableFields);
+						// }}
+					>
+						{props.business}
+					</p>
 					<div
 						className="card-type fb row"
 						style={{
@@ -63,9 +125,48 @@ const BookingCard = (props) => {
 						Contact Information
 					</div>
 					<div className="card-contact-info">
-						<p>Name: {props.name}</p>
-						<p>Email: {props.email}</p>
-						<p>Telephone: {props.telephone}</p>
+						<p>
+							Name:
+							<span
+								contentEditable={props.editable}
+								// onInput={(e) => {
+								// 	setEditableFields({
+								// 		...editableFields,
+								// 		name: e.currentTarget.textContent,
+								// 	});
+								// }}
+							>
+								{props.name}
+							</span>
+						</p>
+						<p>
+							Email:
+							<span
+								contentEditable={props.editable}
+								// onInput={(e) => {
+								// 	setEditableFields({
+								// 		...editableFields,
+								// 		email: e.currentTarget.textContent,
+								// 	});
+								// }}
+							>
+								{props.email}
+							</span>
+						</p>
+						<p>
+							Telephone:
+							<span
+								contentEditable={props.editable}
+								// onInput={(e) => {
+								// 	setEditableFields({
+								// 		...editableFields,
+								// 		telephone: e.currentTarget.textContent,
+								// 	});
+								// }}
+							>
+								{props.telephone}
+							</span>
+						</p>
 					</div>
 					{props.comments && props.comments.toLowerCase() !== "no" ? (
 						<p>Additional Comments: {props.comments}</p>

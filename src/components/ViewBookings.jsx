@@ -13,10 +13,20 @@ const ViewBookings = (props) => {
 				setBookings((await props.client.getMyBookings(props.user)).data);
 			}
 		};
-		callApi();
-	}, [props.client, props.token, props.user, props.updated]);
+		// If deleted is set to true in Admin page, deselect and set deleted back to false
+		if (props.deleted) {
+			props.setDeleted(false);
+			setSelected(-1);
+		}
 
+		callApi();
+	}, [props.client, props.token, props.user, props.updated, props.deleted]);
 	//TODO: Setup prop of user to search, if prop != undefined, fetch, otherwise do line 8
+
+	useEffect(() => {
+		if (props.editingBooking !== -1) {
+		}
+	}, [props.editingBooking]);
 
 	const buildBookings = () => {
 		let existingBookings = bookings?.map((stall, i) => {
@@ -29,6 +39,8 @@ const ViewBookings = (props) => {
 					}}
 				>
 					<BookingCard
+						_id={stall._id}
+						userId={stall.userId}
 						name={stall.name}
 						business={stall.business}
 						email={stall.email}
@@ -38,6 +50,9 @@ const ViewBookings = (props) => {
 						status={stall.status}
 						pitchNo={stall.pitchNo}
 						isSelected={i === selected}
+						editable={props.editingBooking === stall._id}
+						// saveEdits={props.editingBooking === stall._id && props.saveEdits}
+						// setSaveEdits={props.setSaveEdits}
 					/>
 				</div>
 			);

@@ -1,6 +1,6 @@
 import axios from "axios";
-const url = "http://localhost:3001/";
-// const url = "https://stannington-carnival-backend.onrender.com/";
+// const url = "http://localhost:3001/";
+const url = "https://stannington-carnival-backend.onrender.com/";
 
 export class ApiClient {
 	constructor(tokenProvider, logoutHandler) {
@@ -92,11 +92,11 @@ export class ApiClient {
 	// Check pitchNo already allocated
 	checkPitchNo(pitchNo) {
 		return this.apiCall("get", `${url}pitchno/${pitchNo}`);
+	}
 
 	getAllBookings() {
 		return this.apiCall("get", `${url}bookings`);
 	}
-
 
 	getProportions() {
 		return this.apiCall("get", `${url}proportions`);
@@ -104,6 +104,9 @@ export class ApiClient {
 
 	getTotalAssigned() {
 		return this.apiCall("get", `${url}assigned`);
+	}
 
+	deleteBooking(id) {
+		return this.apiCall("delete", `${url}bookings/${id}`);
 	}
 }
