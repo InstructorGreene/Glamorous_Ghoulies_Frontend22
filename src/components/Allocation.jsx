@@ -78,7 +78,6 @@ const Allocation = (props) => {
 								onChange={(event) => setUserInput(event.target.value)}
 								name="pitchNo-input"
 								type="number"
-								min="1"
 								className="form-input"
 								placeholder="Enter pitch number..."
 							/>

@@ -92,5 +92,18 @@ export class ApiClient {
 	// Check pitchNo already allocated
 	checkPitchNo(pitchNo) {
 		return this.apiCall("get", `${url}pitchno/${pitchNo}`);
+
+	getAllBookings() {
+		return this.apiCall("get", `${url}bookings`);
+	}
+
+
+	getProportions() {
+		return this.apiCall("get", `${url}proportions`);
+	}
+
+	getTotalAssigned() {
+		return this.apiCall("get", `${url}assigned`);
+
 	}
 }

@@ -3,6 +3,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import { ApiClient } from "./apiClient";
 import "./App.css";
 import Allocation from "./components/Allocation";
+import Committee from "./components/Committee";
 import Finance from "./components/Finance.jsx";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
@@ -120,6 +121,8 @@ const App = () => {
 					<Route
 						path="/staff/allocation"
 						element={<Allocation client={client} token={token} />}
+						path="/staff/committee"
+						element={<Committee client={client} token={token} />}
 					/>
 				</Route>
 				<Route path="/register" element={<Register client={client} />} />
