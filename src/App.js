@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { ApiClient } from "./apiClient";
 import "./App.css";
+import Admin from "./components/Admin";
 import Allocation from "./components/Allocation";
 import Committee from "./components/Committee";
 import Finance from "./components/Finance.jsx";
@@ -121,8 +122,14 @@ const App = () => {
 					<Route
 						path="/staff/allocation"
 						element={<Allocation client={client} token={token} />}
+					/>
+					<Route
 						path="/staff/committee"
 						element={<Committee client={client} token={token} />}
+					/>
+					<Route
+						path="/staff/admin"
+						element={<Admin client={client} token={token} />}
 					/>
 				</Route>
 				<Route path="/register" element={<Register client={client} />} />
