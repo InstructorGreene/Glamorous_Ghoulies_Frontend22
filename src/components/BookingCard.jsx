@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { FaCheckCircle, FaHandshake, FaHeart, FaPhone } from "react-icons/fa";
+import { FiEdit } from "react-icons/fi";
 import { GiSewingNeedle } from "react-icons/gi";
+import { ImBin } from "react-icons/im";
 import { MdConfirmationNumber, MdOutlineError } from "react-icons/md";
 import "./BookingCard.css";
 
 const BookingCard = (props) => {
+	const [isHovered, setIsHovered] = useState(false);
+
 	// const [editableFields, setEditableFields] = useState({
 	// 	business: props.business,
 	// 	name: props.name,
@@ -87,15 +91,45 @@ const BookingCard = (props) => {
 	};
 
 	return (
-		<div className={`booking-card ${props.isSelected ? "selected" : ""}`}>
-			<div className="fb col" style={{ height: "100%" }}>
+		<div
+			className={`booking-card ${props.isSelected ? "selected" : ""}`}
+			onMouseEnter={() => setIsHovered(true)}
+			onMouseLeave={() => setIsHovered(false)}
+		>
+			<div className="fb row" style={{ justifyContent: "space-between" }}>
 				<div
-					className="fb row"
+					className="card-type fb row stall-type"
 					style={{
-						alignItems: "center",
-						justifyContent: "space-between",
+						backgroundColor: bookingTypes[props.type.toLowerCase()].colour,
 					}}
 				>
+					{bookingTypes[props.type.toLowerCase()].icon}
+					<p className="mg-0">{props.type}</p>
+				</div>
+				<div
+					className="fb row gap-1"
+					style={
+						isHovered && props.view === "admin"
+							? { display: "flex" }
+							: { display: "none" }
+					}
+				>
+					<div className="fb row mg-0 card-type orange icon pointer gap-0">
+						<p className="icon-label mg-0">Edit</p>
+						<FiEdit style={{ height: "70%" }} />
+					</div>
+					<div
+						className="fb row mg-0 card-type red icon pointer gap-0"
+						onClick={() => props.deleteBooking(props._id)}
+						// onClick={() => props.deleteBooking({ id: props._id })}
+					>
+						<p className="icon-label mg-0">Delete</p>
+						<ImBin style={{ height: "70%" }} />
+					</div>
+				</div>
+			</div>
+			<div className="fb col" style={{ height: "90%" }}>
+				<div className="fb row centered">
 					<p
 						className="card-bold mg-0"
 						contentEditable={props.editable}
@@ -109,24 +143,18 @@ const BookingCard = (props) => {
 					>
 						{props.business}
 					</p>
-					<div
-						className="card-type fb row"
-						style={{
-							backgroundColor: bookingTypes[props.type.toLowerCase()].colour,
-						}}
-					>
-						{bookingTypes[props.type.toLowerCase()].icon}
-						<p className="mg-0">{props.type}</p>
-					</div>
 				</div>
-				<div className="fb col centered">
-					<div className="fb row card-contact-header">
+				<div className="fb col">
+					<div
+						className="fb row card-contact-header"
+						style={{ margin: "0.5rem 0" }}
+					>
 						<FaPhone />
 						Contact Information
 					</div>
 					<div className="card-contact-info">
 						<p>
-							Name:
+							<span className="bold">Name:&nbsp;</span>
 							<span
 								contentEditable={props.editable}
 								// onInput={(e) => {
@@ -140,7 +168,7 @@ const BookingCard = (props) => {
 							</span>
 						</p>
 						<p>
-							Email:
+							<span className="bold">Email: </span>
 							<span
 								contentEditable={props.editable}
 								// onInput={(e) => {
@@ -154,7 +182,7 @@ const BookingCard = (props) => {
 							</span>
 						</p>
 						<p>
-							Telephone:
+							<span className="bold">Telephone: </span>
 							<span
 								contentEditable={props.editable}
 								// onInput={(e) => {
@@ -169,14 +197,17 @@ const BookingCard = (props) => {
 						</p>
 					</div>
 					{props.comments && props.comments.toLowerCase() !== "no" ? (
-						<p>Additional Comments: {props.comments}</p>
+						<p className="mg-0" style={{ overflowY: "auto", height: "4.5rem" }}>
+							<span className="bold">Additional Comments: </span>
+							{props.comments}
+						</p>
 					) : (
 						<></>
 					)}
 				</div>
 				<div
 					className={"fb col centered"}
-					style={{ marginTop: "auto", gap: "0.5rem" }}
+					style={{ gap: "0.5rem", marginTop: "auto" }}
 				>
 					<div className="centered fb" style={{ gap: "0.5rem" }}>
 						{!props.pitchNo || props.pitchNo === "-1" ? (
@@ -208,7 +239,7 @@ const BookingCard = (props) => {
 								: null
 						}
 						className={`card-type centered ${
-							props.changeStatus ? "pointer" : ""
+							props.view === "finance" ? "pointer" : ""
 						}`}
 						style={{
 							width: "100%",

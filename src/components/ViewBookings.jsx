@@ -55,6 +55,7 @@ const ViewBookings = (props) => {
 						editable={props.editingBooking === stall._id}
 						view={props.view}
 						changeStatus={(booking) => props.changeStatus(booking)}
+						deleteBooking={(id) => props.deleteBooking(id)}
 						// saveEdits={props.editingBooking === stall._id && props.saveEdits}
 						// setSaveEdits={props.setSaveEdits}
 					/>

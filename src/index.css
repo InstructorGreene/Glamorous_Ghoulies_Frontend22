@@ -96,11 +96,11 @@ code {
 }
 
 .red {
-	background-color: rgb(255, 0, 0);
+	background-color: #e05147;
 }
 
 .red:hover {
-	background-color: rgb(200, 0, 0);
+	background-color: #e1685f;
 }
 
 .green {
@@ -109,4 +109,28 @@ code {
 
 .green:hover {
 	background-color: #0f8f01;
+}
+
+.orange {
+	background-color: #ffa500;
+}
+
+.orange:hover {
+	background-color: #ffb224;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.gap-0 {
+	gap: 0;
+}
+
+.gap-1 {
+	gap: 0.5rem;
+}
+
+.gap-2 {
+	gap: 1rem;
 }
