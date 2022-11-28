@@ -39,3 +39,7 @@
 .card-contact-info p {
 	margin: 0;
 }
+
+.pointer:hover {
+	cursor: pointer;
+}
