@@ -13,6 +13,12 @@ const Navbar = (props) => {
 		changeToken(undefined);
 	};
 
+	function capitalizeFirstLetter(string) {
+		if (string) {
+			return string.charAt(0).toUpperCase() + string.slice(1);
+		}
+	}
+
 	// Handles changing userRole state (when user token changes)
 	useEffect(() => {
 		const callApi = async () => {
@@ -51,13 +57,35 @@ const Navbar = (props) => {
 				>
 					<button className="nav-btn">Login</button>
 				</Link>
+
 				{["admin", "finance", "committee", "allocator"].includes(userRole) ? (
-					<Link to="/staff">
-						<button className="nav-btn">Staff Portal</button>
-					</Link>
+					<>
+						<Link to="/staff/committee">
+							<button className="nav-btn">View Statistics</button>
+						</Link>
+						<Link to={`/staff/${userRole}`}>
+							<button className="nav-btn">{`${capitalizeFirstLetter(
+								userRole
+							)} Page`}</button>
+						</Link>
+					</>
 				) : (
 					<></>
 				)}
+
+				{["super"].includes(userRole) ? (
+					<>
+						<Link to="/staff/committee">
+							<button className="nav-btn">View Statistics</button>
+						</Link>
+						<Link to="/staff">
+							<button className="nav-btn">Staff Pages</button>
+						</Link>
+					</>
+				) : (
+					<></>
+				)}
+
 				<Link to={!props.token ? "/login" : "/bookings/new"}>
 					<button className="nav-btn">Book</button>
 				</Link>
