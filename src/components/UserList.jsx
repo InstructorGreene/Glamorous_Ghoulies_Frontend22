@@ -8,9 +8,6 @@ const UserList = (props) => {
 	useEffect(() => {
 		const callApi = async () => {
 			setUsers((await props.client.getUsers()).data);
-			console.table((await props.client.getUsers()).data);
-			// console.table(users);
-			// setUsers((await props.client.getUsers(props.token)).data.name);
 		};
 		callApi();
 	}, [props.client, props.token]);
