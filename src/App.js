@@ -107,26 +107,52 @@ const App = () => {
 					/>
 				</Route>
 				<Route
-					element={
-						<PrivateRoute
-							userRole={userRole}
-							allowed={["admin", "finance", "committee", "allocator"]}
-						/>
-					}
+					element={<PrivateRoute userRole={userRole} allowed={["super"]} />}
 				>
 					<Route path="/staff" element={<StaffPortal />} />
+				</Route>
+				<Route
+					element={
+						<PrivateRoute userRole={userRole} allowed={["finance", "super"]} />
+					}
+				>
 					<Route
 						path="/staff/finance"
 						element={<Finance client={client} token={token} />}
 					/>
+				</Route>
+
+				<Route
+					element={
+						<PrivateRoute
+							userRole={userRole}
+							allowed={["allocator", "super"]}
+						/>
+					}
+				>
 					<Route
 						path="/staff/allocation"
 						element={<Allocation client={client} token={token} />}
 					/>
+				</Route>
+				<Route
+					element={
+						<PrivateRoute
+							userRole={userRole}
+							allowed={["allocator", "super", "finance,", "admin", "committee"]}
+						/>
+					}
+				>
 					<Route
 						path="/staff/committee"
 						element={<Committee client={client} token={token} />}
 					/>
+				</Route>
+				<Route
+					element={
+						<PrivateRoute userRole={userRole} allowed={["admin", "super"]} />
+					}
+				>
 					<Route
 						path="/staff/admin"
 						element={<Admin client={client} token={token} />}
