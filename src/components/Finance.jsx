@@ -5,15 +5,12 @@ import ViewBookings from "./ViewBookings";
 
 const Finance = (props) => {
 	const [selectedUser, setSelectedUser] = useState(undefined);
-	const [selectedBooking, setSelectedBooking] = useState(undefined);
 	const [updated, setUpdated] = useState(0);
 
-	const changeStatus = async () => {
-		let changeTo =
-			selectedBooking.status.toLowerCase() === "paid" ? "unpaid" : "paid";
-		let updatedBooking = { ...selectedBooking, status: changeTo };
+	const changeStatus = async (booking) => {
+		let changeTo = booking.status.toLowerCase() === "paid" ? "unpaid" : "paid";
+		let updatedBooking = { ...booking, status: changeTo };
 		await props.client.updateBooking(updatedBooking);
-		setSelectedBooking(updatedBooking);
 		setUpdated(updated + 1);
 	};
 
@@ -42,8 +39,9 @@ const Finance = (props) => {
 						client={props.client}
 						token={props.token}
 						user={selectedUser}
-						setSelectedBooking={setSelectedBooking}
 						updated={updated}
+						view="finance"
+						changeStatus={(booking) => changeStatus(booking)}
 					/>
 				) : (
 					<div
@@ -53,15 +51,9 @@ const Finance = (props) => {
 						Begin by selecting a user to view their bookings.
 					</div>
 				)}
-				<div className="centered">
-					<button className="btn" onClick={() => changeStatus()}>
-						Set as paid/unpaid
-					</button>
-				</div>
 			</div>
 		</div>
 	);
-	// TODO: If there is no selectedUser, display message
 };
 
 export default Finance;

@@ -188,8 +188,28 @@ const BookingCard = (props) => {
 							</>
 						)}
 					</div>
+
 					<div
-						className="card-type centered"
+						onClick={
+							props.view === "finance"
+								? () =>
+										props.changeStatus({
+											_id: props._id,
+											name: props.name,
+											business: props.business,
+											email: props.email,
+											telephone: props.telephone,
+											type: props.type,
+											comments: props.comments,
+											status: props.status,
+											userId: props.userId,
+											pitchNo: props.pitchNo,
+										})
+								: null
+						}
+						className={`card-type centered ${
+							props.changeStatus ? "pointer" : ""
+						}`}
 						style={{
 							width: "100%",
 							backgroundColor: statusTypes[props.status.toLowerCase()].colour,
