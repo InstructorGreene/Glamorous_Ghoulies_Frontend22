@@ -16,20 +16,10 @@ const Admin = (props) => {
 		closeButton: true,
 	};
 
-	const deleteBooking = async () => {
-		if (!selectedBooking) {
-			// Toastr notification
-			toastr["error"](
-				"No selection was made! Select a booking and then delete!",
-				"Error occured while deleting"
-			);
-			return;
-		}
-		await props.client.deleteBooking(selectedBooking._id);
+	const deleteBooking = async (id) => {
+		await props.client.deleteBooking(id);
 		toastr["success"]("The selected booking was deleted.", "Success");
-		setSelectedBooking(undefined);
 		setUpdated((prev) => prev + 1);
-		setDeleted(true);
 	};
 
 	const editBooking = () => {
@@ -78,8 +68,11 @@ const Admin = (props) => {
 						deleted={deleted} // Used for keeping track when something's been deleted
 						setDeleted={setDeleted} // Used to reset deleted state
 						editingBooking={editingBooking}
-						saveEdits={saveEdits}
-						setSaveEdits={setSaveEdits}
+						view="admin"
+						deleteBooking={(id) => deleteBooking(id)}
+
+						// saveEdits={saveEdits}
+						// setSaveEdits={setSaveEdits}
 					/>
 				) : (
 					<div

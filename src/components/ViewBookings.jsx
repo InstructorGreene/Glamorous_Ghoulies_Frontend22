@@ -34,8 +34,10 @@ const ViewBookings = (props) => {
 				<div
 					key={i}
 					onClick={() => {
-						props.setSelectedBooking(stall);
-						setSelected(i);
+						if (props.setSelectedBooking) {
+							props.setSelectedBooking(stall);
+							setSelected(i);
+						}
 					}}
 				>
 					<BookingCard
@@ -51,6 +53,9 @@ const ViewBookings = (props) => {
 						pitchNo={stall.pitchNo}
 						isSelected={i === selected}
 						editable={props.editingBooking === stall._id}
+						view={props.view}
+						changeStatus={(booking) => props.changeStatus(booking)}
+						deleteBooking={(id) => props.deleteBooking(id)}
 						// saveEdits={props.editingBooking === stall._id && props.saveEdits}
 						// setSaveEdits={props.setSaveEdits}
 					/>
