@@ -58,28 +58,17 @@ const Navbar = (props) => {
 					<button className="nav-btn">Login</button>
 				</Link>
 
-				{["admin", "finance", "committee", "allocator"].includes(userRole) ? (
+				{["admin", "finance", "committee", "allocator", "super"].includes(
+					userRole
+				) ? (
 					<>
 						<Link to="/staff/committee">
 							<button className="nav-btn">View Statistics</button>
 						</Link>
-						<Link to={`/staff/${userRole}`}>
+						<Link to={userRole === "super" ? "/staff" : `/staff/${userRole}`}>
 							<button className="nav-btn">{`${capitalizeFirstLetter(
 								userRole
 							)} Page`}</button>
-						</Link>
-					</>
-				) : (
-					<></>
-				)}
-
-				{["super"].includes(userRole) ? (
-					<>
-						<Link to="/staff/committee">
-							<button className="nav-btn">View Statistics</button>
-						</Link>
-						<Link to="/staff">
-							<button className="nav-btn">Staff Pages</button>
 						</Link>
 					</>
 				) : (
