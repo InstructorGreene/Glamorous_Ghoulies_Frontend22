@@ -5,6 +5,8 @@ import ViewBookings from "./ViewBookings";
 
 const Finance = (props) => {
 	const [selectedUser, setSelectedUser] = useState(undefined);
+	const [selectedStatus, setSelectedStatus] = useState(undefined);
+	const [selectedBooking, setSelectedBooking] = useState(undefined);
 	const [updated, setUpdated] = useState(0);
 
 	const changeStatus = async (booking) => {
@@ -28,16 +30,18 @@ const Finance = (props) => {
 					client={props.client}
 					token={props.token}
 					setSelectedUser={setSelectedUser}
+					setSelectedStatus={setSelectedStatus}
 				/>
 			</div>
 			<div className="fb col" style={{ minHeight: "90vh", minWidth: "75%" }}>
 				<h2 className="header-font finance-header">
 					Selected user's bookings:
 				</h2>
-				{selectedUser ? (
+				{selectedUser || selectedStatus ? (
 					<ViewBookings
 						client={props.client}
 						token={props.token}
+						status={selectedStatus}
 						user={selectedUser}
 						updated={updated}
 						view="finance"
