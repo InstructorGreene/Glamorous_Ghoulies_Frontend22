@@ -26,8 +26,15 @@ const ViewBookings = (props) => {
 		}
 
 		callApi();
-	}, [props.client, props.token, props.user, props.updated, props.deleted]);
-	//TODO: Setup prop of user to search, if prop != undefined, fetch, otherwise do line 8
+		/*eslint-disable*/
+	}, [
+		props.client,
+		props.token,
+		props.user,
+		props.updated,
+		props.deleted,
+		props.status,
+	]); /*eslint-enable*/
 
 	useEffect(() => {
 		if (props.editingBooking !== -1) {
@@ -78,7 +85,11 @@ const ViewBookings = (props) => {
 				className="fb row mg-1 centered"
 				style={{ gap: "1rem", flexWrap: "wrap" }}
 			>
-				{buildBookings()}
+				{(bookings && bookings.length) > 0 ? (
+					buildBookings()
+				) : (
+					<p>No bookings were found that matched your selected filters.</p>
+				)}
 			</div>
 		</>
 	);
