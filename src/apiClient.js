@@ -98,6 +98,10 @@ export class ApiClient {
 		return this.apiCall("get", `${url}bookings`);
 	}
 
+	getByStatus(status) {
+		return this.apiCall("get", `${url}bookings/filter/${status}`);
+	}
+
 	getProportions() {
 		return this.apiCall("get", `${url}proportions`);
 	}

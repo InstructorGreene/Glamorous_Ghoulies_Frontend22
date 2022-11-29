@@ -5,6 +5,7 @@ import ViewBookings from "./ViewBookings";
 
 const Allocation = (props) => {
 	const [selectedUser, setSelectedUser] = useState(undefined);
+	const [selectedStatus, setSelectedStatus] = useState(undefined);
 	const [selectedBooking, setSelectedBooking] = useState(undefined);
 	const [updated, setUpdated] = useState(0);
 	const [userInput, setUserInput] = useState("");
@@ -48,17 +49,19 @@ const Allocation = (props) => {
 					client={props.client}
 					token={props.token}
 					setSelectedUser={setSelectedUser}
+					setSelectedStatus={setSelectedStatus}
 				/>
 			</div>
 			<div className="fb col" style={{ minHeight: "90vh", minWidth: "75%" }}>
 				<h2 className="header-font finance-header">
 					Selected user's bookings:
 				</h2>
-				{selectedUser ? (
+				{selectedUser || selectedStatus ? (
 					<ViewBookings
 						client={props.client}
 						token={props.token}
 						user={selectedUser}
+						status={selectedStatus}
 						setSelectedBooking={setSelectedBooking}
 						updated={updated}
 					/>
