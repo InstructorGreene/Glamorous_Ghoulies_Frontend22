@@ -40,6 +40,28 @@
 	margin: 0;
 }
 
+
+.stall-type {
+	width: min-content;
+	padding-inline: "1rem";
+}
+
 .pointer:hover {
 	cursor: pointer;
 }
+
+.icon:hover {
+	gap: 0.5rem;
+}
+
+.icon-label {
+	max-width: 0;
+	opacity: 0;
+	transition: 0.2s ease-in-out;
+}
+
+.icon:hover .icon-label {
+	max-width: 100px;
+	opacity: 1;
+}
+
