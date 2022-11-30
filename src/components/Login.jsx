@@ -73,16 +73,7 @@ const Login = (props) => {
 										onChange={(event) => changeHandler(event)}
 									></input>
 								</div>
-								<div className="form-group">
-									<input
-										className="form-control"
-										name="email"
-										type="email"
-										value={userDetails.email}
-										placeholder="Email..."
-										onChange={(event) => changeHandler(event)}
-									></input>
-								</div>
+
 								<div className="form-group">
 									<input
 										className="form-control"

@@ -40,6 +40,14 @@ export class ApiClient {
 		return this.apiCall("get", `${url}users`);
 	}
 
+	usernameIsAvailable(username) {
+		return this.apiCall("get", `${url}users/isavailable/${username}`);
+	}
+
+	verifyRegistration(details) {
+		return this.apiCall("post", `${url}verify/registration`, details);
+	}
+
 	addUser(username, email, password, role) {
 		return this.apiCall("post", `${url}users`, {
 			username,
