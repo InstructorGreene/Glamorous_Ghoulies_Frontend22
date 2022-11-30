@@ -6,7 +6,7 @@ const Committee = (props) => {
 	const [totalAssigned, setTotalAssigned] = useState(0);
 	const [totalBookingsCount, setTotalBookingsCount] = useState(0);
 
-	let colours = ["#5c5", "#55f", "#f55"];
+	let colours = ["#55f", "#f55", "#5c5"];
 
 	useEffect(() => {
 		const callApi = async () => {

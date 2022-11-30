@@ -29,6 +29,11 @@
 	gap: 0.5rem;
 }
 
+.contact-info-container {
+	display: flex;
+	align-items: center;
+}
+
 .card-contact-header {
 	align-items: center;
 	gap: 0.5rem;
@@ -39,7 +44,6 @@
 .card-contact-info p {
 	margin: 0;
 }
-
 
 .stall-type {
 	width: min-content;
@@ -64,4 +68,3 @@
 	max-width: 100px;
 	opacity: 1;
 }
-

@@ -6,7 +6,6 @@ import ViewBookings from "./ViewBookings";
 const Finance = (props) => {
 	const [selectedUser, setSelectedUser] = useState(undefined);
 	const [selectedStatus, setSelectedStatus] = useState(undefined);
-	const [selectedBooking, setSelectedBooking] = useState(undefined);
 	const [updated, setUpdated] = useState(0);
 
 	const changeStatus = async (booking) => {
@@ -25,7 +24,6 @@ const Finance = (props) => {
 					minWidth: "415px",
 				}}
 			>
-				<h2 className="header-font finance-header">Select a user:</h2>
 				<UserList
 					client={props.client}
 					token={props.token}
