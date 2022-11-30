@@ -9,7 +9,6 @@ const ViewBookings = (props) => {
 		const callApi = async () => {
 			if (props.user === undefined) {
 				if (props.status !== undefined) {
-					console.log("test");
 					setBookings((await props.client.getByStatus(props.status)).data);
 				} else {
 					setBookings((await props.client.getMyBookings(props.token)).data);
@@ -18,6 +17,8 @@ const ViewBookings = (props) => {
 				setBookings((await props.client.getMyBookings(props.user)).data);
 			}
 		};
+
+		// TODO: figure out if this is still needed
 		// If deleted is set to true in Admin page, deselect and set deleted back to false
 		if (props.deleted) {
 			props.setDeleted(false);

@@ -1,9 +1,15 @@
-import React, { useState } from "react";
-import { FaCheckCircle, FaHandshake, FaHeart, FaPhone } from "react-icons/fa";
+import React, { useEffect, useState } from "react";
+import {
+	FaCheckCircle,
+	FaHandshake,
+	FaHeart,
+	FaPhone,
+	FaTimesCircle,
+} from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import { GiSewingNeedle } from "react-icons/gi";
 import { ImBin } from "react-icons/im";
-import { MdConfirmationNumber, MdOutlineError } from "react-icons/md";
+import { MdConfirmationNumber } from "react-icons/md";
 import "./BookingCard.css";
 
 const BookingCard = (props) => {
@@ -37,7 +43,7 @@ const BookingCard = (props) => {
 			colour: "#1cbb55" /* Green */,
 		},
 		unpaid: {
-			icon: <MdOutlineError />,
+			icon: <FaTimesCircle />,
 			colour: "#E05147" /* Red */,
 		},
 	};

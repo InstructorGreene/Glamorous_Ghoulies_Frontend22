@@ -102,6 +102,10 @@ export class ApiClient {
 		return this.apiCall("get", `${url}pitchno/${pitchNo}`);
 	}
 
+	getPitchList() {
+		return this.apiCall("get", `${url}bookings/list/pitchnumbers`);
+	}
+
 	getAllBookings() {
 		return this.apiCall("get", `${url}bookings`);
 	}

@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import { isDisabled } from "@testing-library/user-event/dist/utils";
+import React, { useEffect, useState } from "react";
+import Select from "react-select";
 import toastr from "toastr";
+import "./Allocation.css";
 import UserList from "./UserList";
 import ViewBookings from "./ViewBookings";
 
@@ -8,7 +11,8 @@ const Allocation = (props) => {
 	const [selectedStatus, setSelectedStatus] = useState(undefined);
 	const [selectedBooking, setSelectedBooking] = useState(undefined);
 	const [updated, setUpdated] = useState(0);
-	const [userInput, setUserInput] = useState("");
+	const [dropdownContents, setDropdownContents] = useState([]);
+	const [dropdownSelection, setDropdownSelection] = useState(undefined);
 
 	toastr.options = {
 		positionClass: "toast-bottom-right",
@@ -16,13 +20,14 @@ const Allocation = (props) => {
 	};
 
 	const changePitchNo = async (event) => {
+		console.log(dropdownSelection);
 		event.preventDefault();
-		if (!(userInput > 0)) {
+		if (!(dropdownSelection > 0)) {
 			toastr["error"]("Pitch number must be a positive number!", "Error!");
 			return;
 		}
-		if (!(await props.client.checkPitchNo(userInput)).data) {
-			let updatedBooking = { ...selectedBooking, pitchNo: userInput };
+		if (!(await props.client.checkPitchNo(dropdownSelection)).data) {
+			let updatedBooking = { ...selectedBooking, pitchNo: dropdownSelection };
 			await props.client.updateBooking(updatedBooking);
 			setSelectedBooking(updatedBooking);
 			setUpdated(updated + 1);
@@ -34,6 +39,28 @@ const Allocation = (props) => {
 			);
 		}
 	};
+
+	const submitHandler = () => {
+		console.log(dropdownSelection);
+	};
+
+	useEffect(() => {
+		const generateDropdownContents = async () => {
+			let totalStalls = 300;
+			let availablePitches = []; // This will store the output array
+			let unavailablePitches = (await props.client.getPitchList()).data;
+			for (let i = 1; i <= totalStalls; i++) {
+				availablePitches.push({
+					value: i,
+					label: i,
+					isDisabled: unavailablePitches.includes(String(i)),
+					// Very slow solution, but easiest to read
+				});
+			}
+			setDropdownContents(availablePitches);
+		};
+		generateDropdownContents();
+	}, [props.client, updated]);
 
 	return (
 		<div className="fb row">
@@ -53,6 +80,20 @@ const Allocation = (props) => {
 				/>
 			</div>
 			<div className="fb col" style={{ minHeight: "90vh", minWidth: "75%" }}>
+				<div className="fb row centered gap-2 fixed-element">
+					<div style={{ width: "300px" }}>
+						<Select
+							style={{ width: "10rem" }}
+							placeholder="Choose a stall number..."
+							options={dropdownContents}
+							onChange={(event) => setDropdownSelection(event.label)}
+							width={100}
+						/>
+					</div>
+					<button className="btn" onClick={(event) => changePitchNo(event)}>
+						Submit
+					</button>
+				</div>
 				<h2 className="header-font finance-header">
 					Selected user's bookings:
 				</h2>
@@ -73,23 +114,6 @@ const Allocation = (props) => {
 						Begin by selecting a user to view their bookings.
 					</div>
 				)}
-				<div className="centered">
-					<form onSubmit={(event) => changePitchNo(event)}>
-						<label>
-							Pitch Number:
-							<input
-								onChange={(event) => setUserInput(event.target.value)}
-								name="pitchNo-input"
-								type="number"
-								className="form-input"
-								placeholder="Enter pitch number..."
-							/>
-						</label>
-						<button type="submit" className="btn">
-							Submit
-						</button>
-					</form>
-				</div>
 			</div>
 		</div>
 	);
