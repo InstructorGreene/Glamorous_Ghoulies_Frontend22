@@ -6,7 +6,6 @@ import ViewBookings from "./ViewBookings";
 const Finance = (props) => {
 	const [selectedUser, setSelectedUser] = useState(undefined);
 	const [selectedStatus, setSelectedStatus] = useState(undefined);
-	const [selectedBooking, setSelectedBooking] = useState(undefined);
 	const [updated, setUpdated] = useState(0);
 
 	const changeStatus = async (booking) => {
