@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { FaLessThanEqual } from "react-icons/fa";
+import { MdFaceRetouchingNatural } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import toastr from "toastr";
 import "../App.css";
@@ -17,31 +19,39 @@ const Register = (props) => {
 	};
 	const navigateTo = useNavigate();
 
-	const meetsRequirements = (entries) => {
-		// HTML handles email error checking
+	const meetsRequirements = async (entries) => {
 		if (entries.username.length < 5) {
-			alert("Username too short");
 			return false;
 		}
 		if (entries.password.length < 6 || !/\d/.test(entries.password)) {
-			alert(
-				"Your password must be at least 6 characters in length and must contain a number"
-			);
 			return false;
 		}
+
 		return true;
 	};
 
 	const submitHandler = async (event) => {
 		event.preventDefault();
-		if (
-			!meetsRequirements({
+		let requestOutput = (
+			await props.client.verifyRegistration({
 				username: userDetails.username,
 				password: userDetails.password,
 			})
-		) {
-			return false;
+		).data;
+		if (!(await props.client.usernameIsAvailable(userDetails.username)).data) {
+			toastr["error"](
+				"An account with that username already exists",
+				"Account creation failed"
+			);
+			return;
 		}
+		toastr[requestOutput.status](requestOutput.message, requestOutput.title);
+		if (requestOutput.status !== "success") {
+			console.log("Error verifying details");
+			return;
+		}
+		console.log("Good Registration");
+
 		try {
 			await props.client.addUser(
 				userDetails.username,
@@ -49,7 +59,6 @@ const Register = (props) => {
 				userDetails.password,
 				"holder"
 			);
-			toastr["success"]("Account created successfully!", "Success!");
 			navigateTo("/");
 		} catch (e) {
 			toastr["error"](
@@ -92,16 +101,6 @@ const Register = (props) => {
 									type="text"
 									value={userDetails.username}
 									placeholder="Username..."
-									onChange={(event) => changeHandler(event)}
-								></input>
-							</div>
-							<div className="form-group">
-								<input
-									className="form-control"
-									name="email"
-									type="email"
-									value={userDetails.email}
-									placeholder="Email..."
 									onChange={(event) => changeHandler(event)}
 								></input>
 							</div>
