@@ -1,4 +1,3 @@
-import { isDisabled } from "@testing-library/user-event/dist/utils";
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import toastr from "toastr";
@@ -38,10 +37,6 @@ const Allocation = (props) => {
 				"Error!"
 			);
 		}
-	};
-
-	const submitHandler = () => {
-		console.log(dropdownSelection);
 	};
 
 	useEffect(() => {

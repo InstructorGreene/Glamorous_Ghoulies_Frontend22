@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { FaLessThanEqual } from "react-icons/fa";
-import { MdFaceRetouchingNatural } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import toastr from "toastr";
 import "../App.css";
@@ -18,18 +16,6 @@ const Register = (props) => {
 		closeButton: true,
 	};
 	const navigateTo = useNavigate();
-
-	const meetsRequirements = async (entries) => {
-		if (entries.username.length < 5) {
-			return false;
-		}
-		if (entries.password.length < 6 || !/\d/.test(entries.password)) {
-			return false;
-		}
-
-		return true;
-	};
-
 	const submitHandler = async (event) => {
 		event.preventDefault();
 		let requestOutput = (

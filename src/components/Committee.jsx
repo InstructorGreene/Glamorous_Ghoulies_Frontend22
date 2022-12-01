@@ -6,18 +6,22 @@ const Committee = (props) => {
 	const [totalAssigned, setTotalAssigned] = useState(0);
 	const [totalBookingsCount, setTotalBookingsCount] = useState(0);
 
-	let colours = ["#5c5", "#55f", "#f55"];
+	let colours = { Craft: "#5c5", Commercial: "#55f", Charity: "#f55" };
 
 	useEffect(() => {
 		const callApi = async () => {
 			setProportions((await props.client.getProportions()).data);
+			console.log(proportions);
 			setTotalAssigned(
 				(await props.client.getTotalAssigned()).data["allocated stalls"]
 			);
 			setTotalBookingsCount((await props.client.getAllBookings()).data.length);
 		};
 		callApi();
+		callApi();
+		/*eslint-disable*/
 	}, [props.client, props.token]);
+	/*eslint-enable*/
 
 	return (
 		<div className="centered" style={{ width: "100vw", height: "90vh" }}>
@@ -43,7 +47,7 @@ const Committee = (props) => {
 							title: key,
 							label: key,
 							value: value,
-							color: `${colours[i]}`,
+							color: `${colours[key]}`,
 							// color: `#${Math.floor(Math.random() * 16777215).toString(16)}`,
 						};
 					})}
