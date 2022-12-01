@@ -6,6 +6,7 @@ const Committee = (props) => {
 	const [totalAssigned, setTotalAssigned] = useState(0);
 	const [totalBookingsCount, setTotalBookingsCount] = useState(0);
 
+
 	let colours = { Craft: "#5c5", Commercial: "#55f", Charity: "#f55" };
 
 	useEffect(() => {

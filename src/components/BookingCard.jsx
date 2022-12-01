@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import {
 	FaCheckCircle,
+	FaComments,
 	FaHandshake,
 	FaHeart,
 	FaPhone,
 	FaTimesCircle,
+	FaUserAlt,
 } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import { GiSewingNeedle } from "react-icons/gi";
 import { ImBin } from "react-icons/im";
+import { IoMail } from "react-icons/io5";
 import { MdConfirmationNumber } from "react-icons/md";
 import "./BookingCard.css";
 
@@ -155,12 +158,12 @@ const BookingCard = (props) => {
 						className="fb row card-contact-header"
 						style={{ margin: "0.5rem 0" }}
 					>
-						<FaPhone />
-						Contact Information
+						Contact Information:
 					</div>
 					<div className="card-contact-info">
-						<p>
-							<span className="bold">Name:&nbsp;</span>
+						<p className="contact-info-container">
+							<FaUserAlt />
+							&nbsp;
 							<span
 								contentEditable={props.editable}
 								// onInput={(e) => {
@@ -173,8 +176,9 @@ const BookingCard = (props) => {
 								{props.name}
 							</span>
 						</p>
-						<p>
-							<span className="bold">Email: </span>
+						<p className="contact-info-container">
+							<IoMail />
+							&nbsp;
 							<span
 								contentEditable={props.editable}
 								// onInput={(e) => {
@@ -187,8 +191,9 @@ const BookingCard = (props) => {
 								{props.email}
 							</span>
 						</p>
-						<p>
-							<span className="bold">Telephone: </span>
+						<p className="contact-info-container">
+							<FaPhone />
+							&nbsp;
 							<span
 								contentEditable={props.editable}
 								// onInput={(e) => {
@@ -203,8 +208,9 @@ const BookingCard = (props) => {
 						</p>
 					</div>
 					{props.comments && props.comments.toLowerCase() !== "no" ? (
-						<p className="mg-0" style={{ overflowY: "auto", height: "4.5rem" }}>
-							<span className="bold">Additional Comments: </span>
+						<p className="mg-0" style={{ overflowY: "auto", height: "5.5rem" }}>
+							<FaComments />
+							&nbsp;
 							{props.comments}
 						</p>
 					) : (

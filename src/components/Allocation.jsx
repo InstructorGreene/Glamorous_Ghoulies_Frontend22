@@ -66,7 +66,6 @@ const Allocation = (props) => {
 					minWidth: "415px",
 				}}
 			>
-				<h2 className="header-font finance-header">Select a user:</h2>
 				<UserList
 					client={props.client}
 					token={props.token}

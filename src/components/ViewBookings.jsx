@@ -20,10 +20,10 @@ const ViewBookings = (props) => {
 
 		// TODO: figure out if this is still needed
 		// If deleted is set to true in Admin page, deselect and set deleted back to false
-		if (props.deleted) {
-			props.setDeleted(false);
-			setSelected(-1);
-		}
+		// if (props.deleted) {
+		// 	props.setDeleted(false);
+		// 	setSelected(-1);
+		// }
 
 		callApi();
 		/*eslint-disable*/

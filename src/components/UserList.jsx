@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FaCheckCircle } from "react-icons/fa";
-import { MdOutlineError } from "react-icons/md";
+import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import "./UserList.css";
 
 const UserList = (props) => {
@@ -45,6 +44,7 @@ const UserList = (props) => {
 	const changeStatusFilter = (newStatus) => {
 		props.setSelectedStatus(newStatus);
 		props.setSelectedUser(undefined);
+		setSelected(-1);
 	};
 
 	return (
@@ -64,7 +64,7 @@ const UserList = (props) => {
 					style={{ backgroundColor: "#E05147", marginInline: "1rem" }}
 					onClick={() => changeStatusFilter("unpaid")}
 				>
-					<MdOutlineError />
+					<FaTimesCircle />
 					Unpaid
 				</div>
 			</div>
