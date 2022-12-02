@@ -233,7 +233,7 @@ const BookingCard = (props) => {
 					</div>
 				) : (
 					<>
-						<div className="fb row centered">
+						<div className="fb centered">
 							<p className="card-bold mg-0">{props.business}</p>
 						</div>
 						<div className="fb col">
@@ -241,29 +241,32 @@ const BookingCard = (props) => {
 								className="fb row card-contact-header"
 								style={{ margin: "0.5rem 0" }}
 							>
-								<FaPhone />
-								Contact Information
+								Contact Information:
 							</div>
 							<div className="card-contact-info">
-								<p>
-									<span className="bold">Name:&nbsp;</span>
-									<span>{props.name}</span>
+								<p className="contact-info-container">
+									<FaUserAlt />
+									&nbsp;
+									{props.name}
 								</p>
-								<p>
-									<span className="bold">Email: </span>
-									<span>{props.email}</span>
+								<p className="contact-info-container">
+									<IoMail />
+									&nbsp;
+									{props.email}
 								</p>
-								<p>
-									<span className="bold">Telephone: </span>
-									<span>{props.telephone}</span>
+								<p className="contact-info-container">
+									<FaPhone />
+									&nbsp;
+									{props.telephone}
 								</p>
 							</div>
 							{props.comments && props.comments.toLowerCase() !== "no" ? (
 								<p
-									className="mg-0"
+									className="mg-0 card-contact-info"
 									style={{ overflowY: "auto", height: "4.5rem" }}
 								>
-									<span className="bold">Additional Comments: </span>
+									<FaComments />
+									&nbsp;
 									{props.comments}
 								</p>
 							) : (
