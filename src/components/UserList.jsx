@@ -5,6 +5,7 @@ import "./UserList.css";
 const UserList = (props) => {
 	const [selected, setSelected] = useState(-1);
 	const [users, setUsers] = useState(undefined);
+	const [search, setSearch] = useState("");
 
 	useEffect(() => {
 		const callApi = async () => {
@@ -14,30 +15,34 @@ const UserList = (props) => {
 	}, [props.client, props.token]);
 
 	const buildUsers = () => {
-		let existingUsers = users?.map((user, i) => {
-			return (
-				<div
-					onClick={() => {
-						setSelected(i);
-						props.setSelectedUser(user.token);
-						props.setSelectedStatus(undefined);
-					}}
-					className="fb row user-li mg-0"
-					style={
-						i === selected
-							? {
-									backgroundColor: "rgb(167, 220, 252)",
-									justifyContent: "space-between",
-							  }
-							: { justifyContent: "space-between" }
-					}
-					key={i}
-				>
-					<p>{user.username}</p>
-					<p>{user.email}</p>
-				</div>
-			);
-		});
+		let existingUsers = users
+			?.filter((user) => {
+				return user.username.includes(search);
+			})
+			.map((user, i) => {
+				return (
+					<div
+						onClick={() => {
+							setSelected(i);
+							props.setSelectedUser(user.token);
+							props.setSelectedStatus(undefined);
+						}}
+						className="fb row user-li mg-0"
+						style={
+							i === selected
+								? {
+										backgroundColor: "rgb(167, 220, 252)",
+										justifyContent: "space-between",
+								  }
+								: { justifyContent: "space-between" }
+						}
+						key={i}
+					>
+						<p>{user.username}</p>
+						<p>{user.email}</p>
+					</div>
+				);
+			});
 		return existingUsers;
 	};
 
@@ -70,6 +75,11 @@ const UserList = (props) => {
 			</div>
 
 			<h2 className="header-font finance-header">Select a user:</h2>
+			<input
+				className="cool-search"
+				onChange={(e) => setSearch(e.target.value)}
+				placeholder="Search for a user"
+			/>
 			<div className="fb col mg-1 user-list">{buildUsers()}</div>
 		</>
 	);
