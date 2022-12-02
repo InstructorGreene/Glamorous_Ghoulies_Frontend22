@@ -4,6 +4,7 @@ import BookingCard from "./BookingCard";
 const ViewBookings = (props) => {
 	const [bookings, setBookings] = useState(undefined);
 	const [selected, setSelected] = useState(-1);
+	const [bookingChanged, setBookingChanged] = useState(0);
 
 	useEffect(() => {
 		const callApi = async () => {
@@ -17,14 +18,6 @@ const ViewBookings = (props) => {
 				setBookings((await props.client.getMyBookings(props.user)).data);
 			}
 		};
-
-		// TODO: figure out if this is still needed
-		// If deleted is set to true in Admin page, deselect and set deleted back to false
-		// if (props.deleted) {
-		// 	props.setDeleted(false);
-		// 	setSelected(-1);
-		// }
-
 		callApi();
 		/*eslint-disable*/
 	}, [
@@ -34,6 +27,7 @@ const ViewBookings = (props) => {
 		props.updated,
 		props.deleted,
 		props.status,
+		bookingChanged,
 	]); /*eslint-enable*/
 
 	useEffect(() => {
@@ -54,6 +48,7 @@ const ViewBookings = (props) => {
 					}}
 				>
 					<BookingCard
+						client={props.client}
 						_id={stall._id}
 						userId={stall.userId}
 						name={stall.name}
@@ -67,8 +62,10 @@ const ViewBookings = (props) => {
 						isSelected={i === selected}
 						editable={props.editingBooking === stall._id}
 						view={props.view}
+						setBookings={setBookings}
 						changeStatus={(booking) => props.changeStatus(booking)}
 						deleteBooking={(id) => props.deleteBooking(id)}
+						updated={(number) => setBookingChanged(number)}
 						// saveEdits={props.editingBooking === stall._id && props.saveEdits}
 						// setSaveEdits={props.setSaveEdits}
 					/>
