@@ -31,8 +31,6 @@ const NewBooking = (props) => {
 
 	const submitHandler = async (event) => {
 		event.preventDefault();
-
-		console.log(props.client);
 		let userId = (await props.client.getUserFromToken(props.token)).data._id;
 		try {
 			// TODO: Pitch Id of -1 should be set
