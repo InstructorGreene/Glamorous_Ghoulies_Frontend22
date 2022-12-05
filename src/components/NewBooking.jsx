@@ -31,7 +31,11 @@ const NewBooking = (props) => {
 
 	const submitHandler = async (event) => {
 		event.preventDefault();
-		let userId = (await props.client.getUserFromToken(props.token)).data._id;
+		console.log(props.selectedUser);
+		console.log(props);
+		let userId = !props.selectedUser
+			? (await props.client.getUserFromToken(props.token)).data._id
+			: (await props.client.getUserFromToken(props.selectedUser)).data._id;
 		try {
 			// TODO: Pitch Id of -1 should be set
 			const res = await props.client.addBooking({
@@ -46,6 +50,7 @@ const NewBooking = (props) => {
 				userId: userId,
 			});
 			console.log(res.data.message);
+			props.refresh();
 			toastr["success"](
 				"Your booking has been submitted. We'll be in contact with you soon.",
 				"Success!"

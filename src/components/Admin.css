@@ -1,0 +1,12 @@
+.admin-button {
+	border-radius: 90px;
+	border: 1px solid black;
+	color: black;
+	align-items: row;
+	display: flex;
+	gap: 0.5rem;
+	align-items: center;
+	padding: 1rem 0.5rem;
+	height: 0.7rem;
+	margin-top: 0.7rem;
+}

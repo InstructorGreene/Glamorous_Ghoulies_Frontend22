@@ -46,6 +46,10 @@ code {
 	margin: 2rem;
 }
 
+.ml-auto {
+	margin-left: auto;
+}
+
 .no-td {
 	text-decoration: none;
 }
