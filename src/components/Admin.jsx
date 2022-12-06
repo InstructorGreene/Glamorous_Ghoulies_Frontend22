@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { AiOutlinePlusCircle } from "react-icons/ai";
 import toastr from "toastr";
+import "./Admin.css";
+import Modal from "./Modal";
 import UserList from "./UserList";
 import ViewBookings from "./ViewBookings";
 
 const Admin = (props) => {
 	const [selectedUser, setSelectedUser] = useState(undefined);
 	const [selectedStatus, setSelectedStatus] = useState(undefined);
-	const [selectedBooking, setSelectedBooking] = useState(undefined);
 	const [updated, setUpdated] = useState(0);
 	const [deleted, setDeleted] = useState(false);
-	const [editingBooking, setEditingBooking] = useState(-1);
-	const [saveEdits, setSaveEdits] = useState(false);
+	const [isModalOpen, setModalIsOpen] = useState(false);
+	const [userOrFilter, setUserOrFilter] = useState("");
 
 	toastr.options = {
 		positionClass: "toast-bottom-right",
@@ -20,27 +22,36 @@ const Admin = (props) => {
 	const deleteBooking = async (id) => {
 		await props.client.deleteBooking(id);
 		toastr["success"]("The selected booking was deleted.", "Success");
+		refresh();
+	};
+
+	const refresh = () => {
 		setUpdated((prev) => prev + 1);
 	};
 
-	const editBooking = () => {
-		if (!selectedBooking) {
-			toastr["error"](
-				"No selection was made! Select a booking and then edit!",
-				"Error occured when trying to edit"
-			);
-			return;
+	useEffect(() => {
+		if (selectedUser) {
+			setUserOrFilter("user");
 		}
-		setEditingBooking(selectedBooking._id);
-	};
+	}, [selectedUser]);
 
-	const saveEditChanges = async () => {
-		setEditingBooking(-1);
-		setSaveEdits(true);
-	};
+	useEffect(() => {
+		if (selectedStatus) {
+			setUserOrFilter("status");
+		}
+	}, [selectedStatus]);
 
 	return (
 		<div className="fb row">
+			{isModalOpen && selectedUser && (
+				<Modal
+					// setUpdated={(prev) => setUpdated(prev)}
+					refresh={() => refresh()}
+					client={props.client}
+					onRequestClose={() => setModalIsOpen(!isModalOpen)}
+					selectedUser={selectedUser}
+				/>
+			)}
 			<div
 				className="fb col"
 				style={{
@@ -55,21 +66,33 @@ const Admin = (props) => {
 					setSelectedStatus={setSelectedStatus}
 				/>
 			</div>
-			<div className="fb col" style={{ minHeight: "90vh", minWidth: "75%" }}>
-				<h2 className="header-font finance-header">
-					Selected user's bookings:
-				</h2>
+			<div className="fb col" style={{ minHeight: "90vh", minWidth: "77%" }}>
+				<div className="fb row gap-2">
+					<h2 className="header-font finance-header">
+						Selected user's bookings:
+					</h2>
+					<div
+						style={
+							userOrFilter === "user"
+								? { display: "flex" }
+								: { display: "none" }
+						}
+						className="admin-button pointer"
+						onClick={() => setModalIsOpen(!isModalOpen)}
+					>
+						<AiOutlinePlusCircle style={{ width: "30px", height: "30px" }} />
+						<p>Create Booking</p>
+					</div>
+				</div>
 				{selectedUser || selectedStatus ? (
 					<ViewBookings
 						client={props.client}
 						token={props.token}
 						user={selectedUser}
 						status={selectedStatus}
-						setSelectedBooking={setSelectedBooking}
 						updated={updated} // User for updating
 						deleted={deleted} // Used for keeping track when something's been deleted
 						setDeleted={setDeleted} // Used to reset deleted state
-						editingBooking={editingBooking}
 						view="admin"
 						deleteBooking={(id) => deleteBooking(id)}
 
