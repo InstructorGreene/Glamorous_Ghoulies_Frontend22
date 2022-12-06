@@ -36,42 +36,44 @@ const ViewBookings = (props) => {
 	}, [props.editingBooking]);
 
 	const buildBookings = () => {
-		let existingBookings = bookings?.map((stall, i) => {
-			return (
-				<div
-					key={i}
-					onClick={() => {
-						if (props.setSelectedBooking) {
-							props.setSelectedBooking(stall);
-							setSelected(i);
-						}
-					}}
-				>
-					<BookingCard
-						client={props.client}
-						_id={stall._id}
-						userId={stall.userId}
-						name={stall.name}
-						business={stall.business}
-						email={stall.email}
-						telephone={stall.telephone}
-						type={stall.type}
-						comments={stall.comments}
-						status={stall.status}
-						pitchNo={stall.pitchNo}
-						isSelected={i === selected}
-						editable={props.editingBooking === stall._id}
-						view={props.view}
-						setBookings={setBookings}
-						changeStatus={(booking) => props.changeStatus(booking)}
-						deleteBooking={(id) => props.deleteBooking(id)}
-						updated={(number) => setBookingChanged(number)}
-						// saveEdits={props.editingBooking === stall._id && props.saveEdits}
-						// setSaveEdits={props.setSaveEdits}
-					/>
-				</div>
-			);
-		});
+		let existingBookings = bookings
+			?.sort((a, b) => (a.date < b.date ? 1 : -1))
+			.map((stall, i) => {
+				return (
+					<div
+						key={i}
+						onClick={() => {
+							if (props.setSelectedBooking) {
+								props.setSelectedBooking(stall);
+								setSelected(i);
+							}
+						}}
+					>
+						<BookingCard
+							client={props.client}
+							_id={stall._id}
+							userId={stall.userId}
+							name={stall.name}
+							business={stall.business}
+							email={stall.email}
+							telephone={stall.telephone}
+							type={stall.type}
+							comments={stall.comments}
+							status={stall.status}
+							pitchNo={stall.pitchNo}
+							isSelected={i === selected}
+							editable={props.editingBooking === stall._id}
+							view={props.view}
+							setBookings={setBookings}
+							changeStatus={(booking) => props.changeStatus(booking)}
+							deleteBooking={(id) => props.deleteBooking(id)}
+							updated={(number) => setBookingChanged(number)}
+							// saveEdits={props.editingBooking === stall._id && props.saveEdits}
+							// setSaveEdits={props.setSaveEdits}
+						/>
+					</div>
+				);
+			});
 		//TODO: test whether this return can be refactored or not
 		return existingBookings;
 	};
