@@ -84,16 +84,16 @@ const BookingCard = (props) => {
 		props.updated((prev) => prev + 1);
 	};
 
-	// FIXME: editableFields.type not getting initialised by it's useState
-	const cycleStatus = () => {
+
+	const cycleType = () => {
 		let typeList = Object.keys(bookingTypes);
-		let currentIndex = typeList.indexOf(editableFields.type) + 1;
-		if (currentIndex >= typeList.length - 1) {
+		let currentIndex = typeList.indexOf(editableFields.type.toLowerCase()) + 1;
+		if (currentIndex >= typeList.length) {
 			currentIndex = 0;
 		}
 		setEditableFields({
 			...editableFields,
-			type: typeList[currentIndex],
+			type: capitaliseFirstLetter(typeList[currentIndex]),
 		});
 	};
 
@@ -103,6 +103,7 @@ const BookingCard = (props) => {
 			name: props.name,
 			business: props.business,
 			email: props.email,
+			type: props.type,
 			telephone: props.telephone,
 			comments: props.comments,
 		});
@@ -125,14 +126,17 @@ const BookingCard = (props) => {
 		>
 			<div className="fb row" style={{ justifyContent: "space-between" }}>
 				<div
-					className="card-type fb row stall-type"
+					className={`card-type fb row stall-type ${
+						isEditable ? "pointer" : ""
+					}`}
 					style={{
-						backgroundColor: bookingTypes[props.type.toLowerCase()].colour,
+						backgroundColor:
+							bookingTypes[editableFields.type.toLowerCase()].colour,
 					}}
-					onClick={isEditable ? () => cycleStatus() : null}
+					onClick={isEditable ? () => cycleType() : null}
 				>
-					{bookingTypes[props.type.toLowerCase()].icon}
-					<p className="mg-0">{props.type}</p>
+					{bookingTypes[editableFields.type.toLowerCase()].icon}
+					<p className="mg-0">{editableFields.type}</p>
 				</div>
 				<div
 					className="fb row gap-1"
@@ -184,7 +188,6 @@ const BookingCard = (props) => {
 			</div>
 			<div className="fb col" style={{ height: "90%" }}>
 				{isEditable ? (
-					// TODO: Can we add icons to these input forms?
 					<div className="fb col gap-1 mt-1">
 						<input
 							className="form-input auto-width"
