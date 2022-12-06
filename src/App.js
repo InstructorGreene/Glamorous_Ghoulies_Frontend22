@@ -101,7 +101,7 @@ const App = () => {
 							<>
 								{" "}
 								<h1 className="header-font title centered">Your bookings:</h1>
-								<ViewBookings client={client} token={token} />
+								<ViewBookings view="holder" client={client} token={token} />
 							</>
 						}
 					/>

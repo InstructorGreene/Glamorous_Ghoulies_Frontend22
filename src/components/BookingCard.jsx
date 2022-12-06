@@ -84,6 +84,7 @@ const BookingCard = (props) => {
 		props.updated((prev) => prev + 1);
 	};
 
+
 	const cycleType = () => {
 		let typeList = Object.keys(bookingTypes);
 		let currentIndex = typeList.indexOf(editableFields.type.toLowerCase()) + 1;
@@ -140,7 +141,7 @@ const BookingCard = (props) => {
 				<div
 					className="fb row gap-1"
 					style={
-						isHovered && props.view === "admin"
+						isHovered && ["admin", "holder"].includes(props.view)
 							? { display: "flex" }
 							: { display: "none" }
 					}
