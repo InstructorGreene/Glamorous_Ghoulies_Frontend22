@@ -47,6 +47,7 @@ const NewBooking = (props) => {
 				comments: bookingDetails.comments,
 				status: bookingDetails.status,
 				pitchNo: bookingDetails.pitchNo,
+				date: Math.floor(Date.now() / 1000), //epoch timestamp
 				userId: userId,
 			});
 			console.log(res.data.message);
