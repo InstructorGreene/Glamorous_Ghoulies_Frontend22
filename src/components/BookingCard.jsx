@@ -84,14 +84,12 @@ const BookingCard = (props) => {
 		props.updated((prev) => prev + 1);
 	};
 
-	// TODO: Thisss is too buggy to use right now
+	// FIXME: editableFields.type not getting initialised by it's useState
 	const cycleStatus = () => {
 		let typeList = Object.keys(bookingTypes);
-		let currentIndex = typeList.indexOf(editableFields.type);
+		let currentIndex = typeList.indexOf(editableFields.type) + 1;
 		if (currentIndex >= typeList.length - 1) {
 			currentIndex = 0;
-		} else {
-			currentIndex++;
 		}
 		setEditableFields({
 			...editableFields,
@@ -139,7 +137,7 @@ const BookingCard = (props) => {
 				<div
 					className="fb row gap-1"
 					style={
-						isHovered && props.view === "admin"
+						isHovered && ["admin", "holder"].includes(props.view)
 							? { display: "flex" }
 							: { display: "none" }
 					}
