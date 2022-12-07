@@ -254,7 +254,6 @@ const BookingCard = (props) => {
 									&nbsp;
 									{props.telephone}
 								</p>
-								{console.log(props)}
 								<p className="contact-info-container">
 									<FaRegCalendarAlt />
 									&nbsp;

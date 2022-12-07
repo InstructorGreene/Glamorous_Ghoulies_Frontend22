@@ -8,15 +8,22 @@ const ViewBookings = (props) => {
 
 	useEffect(() => {
 		const callApi = async () => {
-			if (props.user === undefined) {
-				if (props.status !== undefined) {
-					setBookings((await props.client.getByStatus(props.status)).data);
-				} else {
-					setBookings((await props.client.getMyBookings(props.token)).data);
-				}
-			} else {
+			if (props.user) {
+				// If a user has been selected...
 				setBookings((await props.client.getMyBookings(props.user)).data);
+				return;
 			}
+			if (props.status === "all") {
+				// If all cards are selected (i.e. on Staff Page load...)
+				setBookings((await props.client.getAllBookings()).data);
+				return;
+			}
+			if (["paid", "unpaid"].includes(props.status)) {
+				setBookings((await props.client.getByStatus(props.status)).data);
+				return;
+			}
+			// If no filters were selected... (i.e. on My Bookings Page)
+			setBookings((await props.client.getMyBookings(props.token)).data);
 		};
 		callApi();
 		/*eslint-disable*/

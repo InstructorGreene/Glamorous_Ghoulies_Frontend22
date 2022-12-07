@@ -50,7 +50,7 @@ const Finance = (props) => {
 						className="header-font finance-header centered"
 						style={{ width: "100%", height: "100%" }}
 					>
-						Begin by selecting a user to view their bookings.
+						User has never logged in.
 					</div>
 				)}
 			</div>

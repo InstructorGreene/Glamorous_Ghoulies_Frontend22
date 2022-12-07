@@ -14,6 +14,10 @@ const UserList = (props) => {
 		callApi();
 	}, [props.client, props.token]);
 
+	useEffect(() => {
+		props.setSelectedStatus("all");
+	}, []);
+
 	const buildUsers = () => {
 		let existingUsers = users
 			?.filter((user) => {
@@ -71,6 +75,13 @@ const UserList = (props) => {
 				>
 					<FaTimesCircle />
 					Unpaid
+				</div>
+				<div
+					className="card-type centered pointer"
+					style={{ backgroundColor: "#1996fc", marginInline: "1rem" }}
+					onClick={() => changeStatusFilter("all")}
+				>
+					View All
 				</div>
 			</div>
 
