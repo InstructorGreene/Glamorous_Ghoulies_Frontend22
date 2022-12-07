@@ -6,6 +6,7 @@ import {
 	FaHandshake,
 	FaHeart,
 	FaPhone,
+	FaRegCalendarAlt,
 	FaTimesCircle,
 	FaUserAlt,
 } from "react-icons/fa";
@@ -83,7 +84,6 @@ const BookingCard = (props) => {
 		});
 		props.updated((prev) => prev + 1);
 	};
-
 
 	const cycleType = () => {
 		let typeList = Object.keys(bookingTypes);
@@ -238,12 +238,6 @@ const BookingCard = (props) => {
 							<p className="card-bold mg-0">{props.business}</p>
 						</div>
 						<div className="fb col">
-							<div
-								className="fb row card-contact-header"
-								style={{ margin: "0.5rem 0" }}
-							>
-								Contact Information:
-							</div>
 							<div className="card-contact-info">
 								<p className="contact-info-container">
 									<FaUserAlt />
@@ -259,6 +253,12 @@ const BookingCard = (props) => {
 									<FaPhone />
 									&nbsp;
 									{props.telephone}
+								</p>
+								{console.log(props)}
+								<p className="contact-info-container">
+									<FaRegCalendarAlt />
+									&nbsp;
+									{String(new Date(props.date * 1000)).slice(0, -34)}
 								</p>
 							</div>
 							{props.comments && props.comments.toLowerCase() !== "no" ? (
