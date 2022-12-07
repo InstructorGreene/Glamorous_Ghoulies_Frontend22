@@ -64,7 +64,7 @@ const App = () => {
 				<Route
 					path="/"
 					element={
-						<>
+						<div>
 							<Navbar token={token} changeToken={changeToken} client={client} />
 							<div>
 								<header className="centered col home-header">
@@ -84,7 +84,23 @@ const App = () => {
 									/>
 								</div>
 							</div>
-						</>
+							<h2 className="header-font mg-2" style={{ fontSize: "32px" }}>
+								Where are we?
+							</h2>
+							<div className="centered">
+								<iframe
+									src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2379.2398549699756!2d-1.544726216862639!3d53.39264916316159!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48797f4522bd298f%3A0xdf7abe3e4eccbb45!2sStannington%20Park!5e0!3m2!1sen!2suk!4v1670427738185!5m2!1sen!2suk"
+									width="97%"
+									height="550"
+									style={{ border: 0, borderRadius: "12px" }}
+									loading="lazy"
+									title="location-map"
+								></iframe>
+							</div>
+							<h2 className="header-font mg-2" style={{ fontSize: "32px" }}>
+								Lorem Ipsummmmm
+							</h2>
+						</div>
 					}
 				/>
 				<Route

@@ -63,8 +63,13 @@ const Navbar = (props) => {
 					<></>
 				)}
 
-				<Link to={!props.token ? "/login" : "/bookings/view"}>
-					<button className="nav-btn">View Bookings</button>
+				<Link className="no-td" to={!props.token ? "/login" : "/bookings/view"}>
+					<button
+						className="nav-btn"
+						style={props.token ? { display: "block" } : { display: "none" }}
+					>
+						View Bookings
+					</button>
 				</Link>
 				<Link to={!props.token ? "/login" : "/bookings/new"}>
 					<button className="nav-btn">Book</button>
