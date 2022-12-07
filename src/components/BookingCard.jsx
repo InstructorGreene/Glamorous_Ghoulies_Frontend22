@@ -279,10 +279,7 @@ const BookingCard = (props) => {
 								</p>
 							</div>
 							{props.comments && props.comments.toLowerCase() !== "no" ? (
-								<p
-									className="mg-0 card-contact-info"
-									style={{ overflowY: "auto", height: "4.5rem" }}
-								>
+								<p className="card-contact-info card-comments">
 									<FaComments />
 									&nbsp;
 									{props.comments}
