@@ -59,30 +59,32 @@ const App = () => {
 
 	return (
 		<>
-			<Navbar token={token} changeToken={changeToken} client={client} />
 			<Routes>
 				{/* Landing page (Home) */}
 				<Route
 					path="/"
 					element={
-						<div>
-							<header className="centered col home-header">
-								<span className="header-font" style={{ fontSize: "32px" }}>
-									Welcome to Stannington Carnival!
-								</span>
-							</header>
-							<h2 className="header-font mg-2" style={{ fontSize: "32px" }}>
-								What's on?
-							</h2>
-							<div className="fb row showcase">
-								<ShowcaseItem
-									image={require("./images/classic-cars.jpg")}
-									title="Classic Cars"
-									body="We have a large selection of Classic Cars on display every year - if you own a classic car and would like to display it, Stannington Carnival would be happy to have you."
-									link="/cars"
-								/>
+						<>
+							<Navbar token={token} changeToken={changeToken} client={client} />
+							<div>
+								<header className="centered col home-header">
+									<span className="header-font" style={{ fontSize: "32px" }}>
+										Welcome to Stannington Carnival!
+									</span>
+								</header>
+								<h2 className="header-font mg-2" style={{ fontSize: "32px" }}>
+									What's on?
+								</h2>
+								<div className="fb row showcase">
+									<ShowcaseItem
+										image={require("./images/classic-cars.jpg")}
+										title="Classic Cars"
+										body="We have a large selection of Classic Cars on display every year - if you own a classic car and would like to display it, Stannington Carnival would be happy to have you."
+										link="/cars"
+									/>
+								</div>
 							</div>
-						</div>
+						</>
 					}
 				/>
 				<Route
@@ -94,13 +96,27 @@ const App = () => {
 				<Route path="/bookings">
 					<Route
 						path="/bookings/new"
-						element={<NewBooking client={client} token={token} />}
+						element={
+							<>
+								<Navbar
+									token={token}
+									changeToken={changeToken}
+									client={client}
+								/>
+								<NewBooking client={client} token={token} />
+							</>
+						}
 					/>
 					<Route
 						path="/bookings/view"
 						element={
 							<>
-								{" "}
+								<Navbar
+									token={token}
+									changeToken={changeToken}
+									client={client}
+								/>
+
 								<h1 className="header-font title centered">Your bookings:</h1>
 								<ViewBookings view="holder" client={client} token={token} />
 							</>
@@ -110,12 +126,36 @@ const App = () => {
 				<Route
 					element={<PrivateRoute userRole={userRole} allowed={["super"]} />}
 				>
-					<Route path="/new-staff" element={<NewStaff client={client} />} />
+					<Route
+						path="/new-staff"
+						element={
+							<>
+								<Navbar
+									token={token}
+									changeToken={changeToken}
+									client={client}
+								/>
+								<NewStaff client={client} />
+							</>
+						}
+					/>
 				</Route>
 				<Route
 					element={<PrivateRoute userRole={userRole} allowed={["super"]} />}
 				>
-					<Route path="/staff" element={<StaffPortal />} />
+					<Route
+						path="/staff"
+						element={
+							<>
+								<Navbar
+									token={token}
+									changeToken={changeToken}
+									client={client}
+								/>
+								<StaffPortal />
+							</>
+						}
+					/>
 				</Route>
 				<Route
 					element={
@@ -124,7 +164,16 @@ const App = () => {
 				>
 					<Route
 						path="/staff/finance"
-						element={<Finance client={client} token={token} />}
+						element={
+							<>
+								<Navbar
+									token={token}
+									changeToken={changeToken}
+									client={client}
+								/>
+								<Finance client={client} token={token} />
+							</>
+						}
 					/>
 				</Route>
 
@@ -138,7 +187,16 @@ const App = () => {
 				>
 					<Route
 						path="/staff/allocator"
-						element={<Allocation client={client} token={token} />}
+						element={
+							<>
+								<Navbar
+									token={token}
+									changeToken={changeToken}
+									client={client}
+								/>
+								<Allocation client={client} token={token} />
+							</>
+						}
 					/>
 				</Route>
 				<Route
@@ -151,7 +209,16 @@ const App = () => {
 				>
 					<Route
 						path="/staff/committee"
-						element={<Committee client={client} token={token} />}
+						element={
+							<>
+								<Navbar
+									token={token}
+									changeToken={changeToken}
+									client={client}
+								/>
+								<Committee client={client} token={token} />
+							</>
+						}
 					/>
 				</Route>
 				<Route
@@ -161,7 +228,16 @@ const App = () => {
 				>
 					<Route
 						path="/staff/admin"
-						element={<Admin client={client} token={token} />}
+						element={
+							<>
+								<Navbar
+									token={token}
+									changeToken={changeToken}
+									client={client}
+								/>
+								<Admin client={client} token={token} />
+							</>
+						}
 					/>
 				</Route>
 				<Route path="/register" element={<Register client={client} />} />

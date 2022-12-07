@@ -65,48 +65,57 @@ const Register = (props) => {
 	};
 
 	return (
-		<div className="sidenav">
-			<img
-				className="stannington-carnival-sidebar"
-				style={{ width: "50%" }}
-				src={require("../images/stannington.jpg")}
-				alt={"event it logo"}
-			/>
-			<div className="login-main-text">
-				<span>
-					<h2>CELEBRATING STANNINGTON</h2>
-				</span>
-				<h2>Register</h2>
-				<div className="main">
-					<div className="login-form">
-						<form onSubmit={(event) => submitHandler(event)}>
-							<div className="form-group">
-								<input
-									className="form-control"
-									name="username"
-									type="text"
-									value={userDetails.username}
-									placeholder="Username..."
-									onChange={(event) => changeHandler(event)}
-								></input>
+		<div className="fb" style={{ width: "100vw", height: "100vh" }}>
+			<div className="sidenav centered">
+				<div>
+					<img
+						className="stannington-carnival-sidebar"
+						style={{ width: "50%" }}
+						src={require("../images/stannington.jpg")}
+						alt={"event it logo"}
+					/>
+					<div className="login-main-text">
+						<span>
+							<h2 style={{ marginTop: 0 }}>CELEBRATING STANNINGTON</h2>
+						</span>
+						<h2>Register</h2>
+						<div className="main">
+							<div className="login-form">
+								<form onSubmit={(event) => submitHandler(event)}>
+									<div className="form-group">
+										<input
+											className="form-control"
+											name="username"
+											type="text"
+											value={userDetails.username}
+											placeholder="Username..."
+											onChange={(event) => changeHandler(event)}
+										></input>
+									</div>
+									<div className="form-group">
+										<input
+											className="form-control"
+											name="password"
+											type="password"
+											value={userDetails.password}
+											placeholder="Password..."
+											onChange={(event) => changeHandler(event)}
+										></input>
+									</div>
+									<button className="btn btn-secondary" type="submit">
+										Register
+									</button>
+								</form>
 							</div>
-							<div className="form-group">
-								<input
-									className="form-control"
-									name="password"
-									type="password"
-									value={userDetails.password}
-									placeholder="Password..."
-									onChange={(event) => changeHandler(event)}
-								></input>
-							</div>
-							<button className="btn btn-secondary" type="submit">
-								Create
-							</button>
-						</form>
+						</div>
 					</div>
 				</div>
 			</div>
+			<img
+				style={{ hegith: "100vh", marginLeft: "auto" }}
+				src="https://images.unsplash.com/photo-1557674835-b5fe95cdc92e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
+				alt="carnival"
+			/>
 		</div>
 	);
 };
