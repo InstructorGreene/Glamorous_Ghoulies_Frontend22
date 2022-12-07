@@ -45,41 +45,29 @@ const Navbar = (props) => {
 				<Link to="/">
 					<button className="nav-btn">Home</button>
 				</Link>
-				<Link
-					style={!props.token ? { display: "block" } : { display: "none" }}
-					to="/register"
-				>
-					<button className="nav-btn">Register</button>
-				</Link>
-				<Link
-					to="/login"
-					style={!props.token ? { display: "block" } : { display: "none" }}
-				>
-					<button className="nav-btn">Login</button>
-				</Link>
 
 				{["admin", "finance", "committee", "allocator", "super"].includes(
 					userRole
 				) ? (
 					<>
-						<Link to="/staff/committee">
-							<button className="nav-btn">View Statistics</button>
-						</Link>
 						<Link to={userRole === "super" ? "/staff" : `/staff/${userRole}`}>
 							<button className="nav-btn">{`${capitalizeFirstLetter(
 								userRole
 							)} Page`}</button>
+						</Link>
+						<Link to="/staff/committee">
+							<button className="nav-btn">View Statistics</button>
 						</Link>
 					</>
 				) : (
 					<></>
 				)}
 
-				<Link to={!props.token ? "/login" : "/bookings/new"}>
-					<button className="nav-btn">Book</button>
-				</Link>
 				<Link to={!props.token ? "/login" : "/bookings/view"}>
 					<button className="nav-btn">View Bookings</button>
+				</Link>
+				<Link to={!props.token ? "/login" : "/bookings/new"}>
+					<button className="nav-btn">Book</button>
 				</Link>
 				<Link className="no-td">
 					{/* no-td hides text decoration of the Link (it has onClick so it has underline ) */}
@@ -91,6 +79,18 @@ const Navbar = (props) => {
 					>
 						Log out
 					</button>
+				</Link>
+				<Link
+					style={!props.token ? { display: "block" } : { display: "none" }}
+					to="/register"
+				>
+					<button className="nav-btn">Register</button>
+				</Link>
+				<Link
+					to="/login"
+					style={!props.token ? { display: "block" } : { display: "none" }}
+				>
+					<button className="nav-btn">Login</button>
 				</Link>
 			</div>
 		</div>
