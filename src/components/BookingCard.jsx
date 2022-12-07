@@ -10,14 +10,19 @@ import {
 	FaTimesCircle,
 	FaUserAlt,
 } from "react-icons/fa";
-
 import { FiEdit } from "react-icons/fi";
 import { GiSewingNeedle } from "react-icons/gi";
 import { ImBin } from "react-icons/im";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { IoMail } from "react-icons/io5";
 import { MdConfirmationNumber } from "react-icons/md";
+import toastr from "toastr";
 import "./BookingCard.css";
+
+toastr.options = {
+	positionClass: "toast-bottom-right",
+	closeButton: true,
+};
 
 const BookingCard = (props) => {
 	const [isHovered, setIsHovered] = useState(false);
@@ -68,7 +73,21 @@ const BookingCard = (props) => {
 		});
 	};
 
+	const validateEditableFields = () => {
+		if (
+			!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(editableFields.email)
+		) {
+			toastr["error"]("Invalid Email", "Booking Edit Failed");
+			return false;
+		}
+		return true;
+	};
+
 	const saveBookingChanges = async () => {
+		if (!validateEditableFields()) {
+			return;
+		}
+		setIsEditable((prev) => !prev);
 		await props.client.updateBooking({
 			_id: props._id,
 			name: props.name,
@@ -151,7 +170,6 @@ const BookingCard = (props) => {
 							<div
 								className="fb row mg-0 card-type blue icon pointer gap-0"
 								onClick={() => {
-									setIsEditable((prev) => !prev);
 									saveBookingChanges();
 								}}
 							>
