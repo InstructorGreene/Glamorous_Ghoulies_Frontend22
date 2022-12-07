@@ -13,7 +13,7 @@ const StaffPortal = (props) => {
 						Finance Officer Controls
 					</button>
 				</Link>
-				<Link to="/staff/allocation">
+				<Link to="/staff/allocator">
 					<button className="btn" style={{ width: "100%" }}>
 						Stall Allocation Controls
 					</button>
@@ -26,6 +26,11 @@ const StaffPortal = (props) => {
 				<Link to="/staff/admin">
 					<button className="btn" style={{ width: "100%" }}>
 						Admin Officer Controls
+					</button>
+				</Link>
+				<Link to="/new-staff">
+					<button className="btn" style={{ width: "100%", marginTop: "2rem" }}>
+						Create New Staff Account
 					</button>
 				</Link>
 			</div>

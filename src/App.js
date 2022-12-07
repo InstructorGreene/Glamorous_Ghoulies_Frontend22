@@ -9,6 +9,7 @@ import Finance from "./components/Finance.jsx";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
 import NewBooking from "./components/NewBooking";
+import NewStaff from "./components/NewStaff";
 import PrivateRoute from "./components/PrivateRoute";
 import Register from "./components/Register";
 import ShowcaseItem from "./components/ShowcaseItem";
@@ -109,6 +110,11 @@ const App = () => {
 				<Route
 					element={<PrivateRoute userRole={userRole} allowed={["super"]} />}
 				>
+					<Route path="/new-staff" element={<NewStaff client={client} />} />
+				</Route>
+				<Route
+					element={<PrivateRoute userRole={userRole} allowed={["super"]} />}
+				>
 					<Route path="/staff" element={<StaffPortal />} />
 				</Route>
 				<Route
@@ -131,7 +137,7 @@ const App = () => {
 					}
 				>
 					<Route
-						path="/staff/allocation"
+						path="/staff/allocator"
 						element={<Allocation client={client} token={token} />}
 					/>
 				</Route>
