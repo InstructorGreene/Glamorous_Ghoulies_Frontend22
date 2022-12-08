@@ -13,18 +13,10 @@ const ShowcaseItem = (props) => {
 				/>
 				<div className="fb col showcase-item-body">
 					<div className="fb col" style={{ gap: "0.5rem" }}>
-						<p className="header-font" style={{ fontSize: "32px" }}>
+						<p className="header-font" style={{ fontSize: "26px" }}>
 							{props.title}
 						</p>
-						<p>{props.body}</p>
-						<p
-							style={{
-								marginLeft: "auto",
-								color: "#444",
-							}}
-						>
-							Click to learn more
-						</p>
+						<p style={{ marginBottom: "0.5rem" }}>{props.body}</p>
 					</div>
 				</div>
 			</Link>
