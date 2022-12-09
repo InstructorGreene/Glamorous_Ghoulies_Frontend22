@@ -46,10 +46,11 @@ const Login = (props) => {
 		}
 	};
 
-	document.body.style.overflow = "hidden";
-
 	return (
-		<div className="fb" style={{ width: "100vw", height: "100vh" }}>
+		<div
+			className="fb"
+			style={{ width: "100vw", height: "100vh", overflow: "hidden" }}
+		>
 			<div className="sidenav centered" style={{ position: "absolute" }}>
 				<div>
 					<img

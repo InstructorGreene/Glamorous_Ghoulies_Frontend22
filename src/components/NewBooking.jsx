@@ -1,4 +1,3 @@
-import { send } from "emailjs-com";
 import React, { useState } from "react";
 import toastr from "toastr";
 import "toastr/build/toastr.min.css";
@@ -32,13 +31,11 @@ const NewBooking = (props) => {
 
 	const submitHandler = async (event) => {
 		event.preventDefault();
-		console.log(props.selectedUser);
-		console.log(props);
 		let userId = !props.selectedUser
 			? (await props.client.getUserFromToken(props.token)).data._id
 			: (await props.client.getUserFromToken(props.selectedUser)).data._id;
 		try {
-			const res = await props.client.addBooking({
+			await props.client.addBooking({
 				name: bookingDetails.name,
 				business: bookingDetails.business,
 				email: bookingDetails.email,
@@ -50,29 +47,16 @@ const NewBooking = (props) => {
 				date: Math.floor(Date.now() / 1000), //epoch timestamp
 				userId: userId,
 			});
-			console.log(res.data.message);
 			props.refresh !== undefined && props.refresh();
 			toastr["success"](
 				"Your booking has been submitted. We'll be in contact with you soon.",
 				"Success!"
-			);
-			send(
-				"service_vd2f28z",
-				"template_dtcnw7i",
-				{
-					from_name: "Stannington Carnival",
-					to_name: bookingDetails.name,
-					message: `${bookingDetails.business} ${bookingDetails.name} ${bookingDetails.comments}`,
-					to_email: bookingDetails.email,
-				},
-				"qmegGCgqCAo94kRKH"
 			);
 		} catch (error) {
 			toastr["error"](
 				"Something has gone wrong while submitting your booking, please contact us directly.",
 				"Error!"
 			);
-			console.log(error);
 			throw error;
 		}
 	};

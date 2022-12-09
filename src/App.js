@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { IoLogoFacebook, IoLogoInstagram, IoLogoTwitter } from "react-icons/io";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { ApiClient } from "./apiClient";
 import "./App.css";
@@ -73,7 +74,7 @@ const App = () => {
 									</span>
 								</header>
 
-								<div className="centered">
+								<div className="centered" style={{ marginTop: "1rem" }}>
 									<article className="hero-banner">
 										<div className="fb row gap-2">
 											<img
@@ -81,7 +82,7 @@ const App = () => {
 												src="https://scontent.flba3-1.fna.fbcdn.net/v/t31.18172-8/11336962_880084938714620_1833581849408480907_o.jpg?_nc_cat=102&ccb=1-7&_nc_sid=730e14&_nc_ohc=q5_GZ5xh8cAAX8gN3K_&_nc_ht=scontent.flba3-1.fna&oh=00_AfC28v3-9Br_GjTuSkog9qQJfh71ru92p5p7wGvqj3JUbQ&oe=63B986D0"
 												alt="carnival"
 											/>
-											<text>
+											<div>
 												<h1 className="mg-0" style={{ fontSize: "29px" }}>
 													About the Carnival{" "}
 												</h1>
@@ -105,24 +106,12 @@ const App = () => {
 													come each year. So, why not join them and see it for
 													yourself?
 												</p>
-											</text>
+											</div>
 										</div>
 									</article>
 								</div>
-
-								<h2 className="header-font mg-2" style={{ fontSize: "32px" }}>
-									What's on?
-								</h2>
-								<div className="fb row showcase">
-									<ShowcaseItem
-										image={require("./images/classic-cars.jpg")}
-										title="Classic Cars"
-										body="We have a large selection of Classic Cars on display every year - if you own a classic car and would like to display it, Stannington Carnival would be happy to have you."
-										link="/cars"
-									/>
-								</div>
-
 							</div>
+							<hr className="newhr" />
 							<h2
 								className="header-font mg-2"
 								style={{ fontSize: "32px", marginBottom: 0 }}
@@ -172,11 +161,41 @@ const App = () => {
 									title="location-map"
 								></iframe>
 							</div>
-							<hr className="newhr" />
-
-							<h2 className="header-font mg-2" style={{ fontSize: "32px" }}>
-								Lorem Ipsummmmm
-							</h2>
+							<footer className="home-footer">
+								<div className="fb row gap-4">
+									<section>
+										<h3>Find us on Social Media:</h3>
+										<div className="fb row gap-1">
+											<a href="https://en-gb.facebook.com/stanningtoncarnival/">
+												<IoLogoFacebook className="footer-social no-td" />
+											</a>
+											<a href="https://www.instagram.com/stanningtoncarnival1/">
+												<IoLogoInstagram className="footer-social" />
+											</a>
+											<a href="https://twitter.com/stanncarnival">
+												<IoLogoTwitter className="footer-social" />
+											</a>
+										</div>
+									</section>
+									<section>
+										<h3>Contact Information:</h3>
+										<div className="fb col" style={{ gap: "0.1rem" }}>
+											<p className="mg-0">
+												<span style={{ fontWeight: "bold" }}>
+													Booking Enquiries:
+												</span>
+												&nbsp;stanningtoncarnival@gmail.com
+											</p>
+											<p className="mg-0">
+												<span style={{ fontWeight: "bold" }}>
+													General Enquiries:
+												</span>
+												&nbsp;jvantinteren@yahoo.co.uk
+											</p>
+										</div>
+									</section>
+								</div>
+							</footer>
 						</div>
 					}
 				/>
