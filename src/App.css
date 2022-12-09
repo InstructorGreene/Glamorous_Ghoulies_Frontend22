@@ -9,6 +9,27 @@
 	);
 }
 
+
+.hero-banner {
+	box-sizing: border-box;
+	border-radius: 16px;
+	/* background: linear-gradient(
+		309deg,
+		rgb(66, 135, 195) 0%,
+		rgb(100, 169, 225) 100%
+	); */
+	height: fit-content;
+	width: calc(75% - 4rem);
+	padding: 2rem;
+	margin: 3rem;
+}
+
+.hero-image {
+	height: 355px;
+	border-radius: 8px;
+	margin-right: 2rem;
+}
+
 .newhr {
 	margin-inline: 2rem;
 	border: none;

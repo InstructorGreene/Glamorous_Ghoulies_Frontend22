@@ -72,6 +72,56 @@ const App = () => {
 										Welcome to Stannington Carnival!
 									</span>
 								</header>
+
+								<div className="centered">
+									<article className="hero-banner">
+										<div className="fb row gap-2">
+											<img
+												className="hero-image"
+												src="https://scontent.flba3-1.fna.fbcdn.net/v/t31.18172-8/11336962_880084938714620_1833581849408480907_o.jpg?_nc_cat=102&ccb=1-7&_nc_sid=730e14&_nc_ohc=q5_GZ5xh8cAAX8gN3K_&_nc_ht=scontent.flba3-1.fna&oh=00_AfC28v3-9Br_GjTuSkog9qQJfh71ru92p5p7wGvqj3JUbQ&oe=63B986D0"
+												alt="carnival"
+											/>
+											<text>
+												<h1 className="mg-0" style={{ fontSize: "29px" }}>
+													About the Carnival{" "}
+												</h1>
+												<p style={{ marginBottom: 0, fontSize: "18px" }}>
+													Stannington Carnival is a great day out for all the
+													family. Visitors can enjoy performances by dance acts
+													and musical groups in the main arena, wander around
+													the many stalls offering gifts and goodies, swoon at
+													the dog show or have a go at archery or circus skills.
+													We also have fairground rides, bouncy castles and a
+													Helter-skelter to keep the kids entertained and a
+													variety of food vendors offering tasty treats. <br />
+													<br />
+													Started in the mid 90's, Stannington Carnival has
+													raised nearly £70,000 to support local community
+													groups. The Carnival aims to help make Stannington a
+													great place to live and work by helping our
+													beneficiaries provide services in and around the
+													village. We also want to create a fun day out to bring
+													people together. <br /> <br /> Thousands of visitors
+													come each year. So, why not join them and see it for
+													yourself?
+												</p>
+											</text>
+										</div>
+									</article>
+								</div>
+
+								<h2 className="header-font mg-2" style={{ fontSize: "32px" }}>
+									What's on?
+								</h2>
+								<div className="fb row showcase">
+									<ShowcaseItem
+										image={require("./images/classic-cars.jpg")}
+										title="Classic Cars"
+										body="We have a large selection of Classic Cars on display every year - if you own a classic car and would like to display it, Stannington Carnival would be happy to have you."
+										link="/cars"
+									/>
+								</div>
+
 							</div>
 							<h2
 								className="header-font mg-2"
