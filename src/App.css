@@ -9,6 +9,15 @@
 	);
 }
 
+.newhr {
+	margin-inline: 2rem;
+	border: none;
+	border-top: 1px solid #eee;
+	margin-top: 1rem;
+}
+
 .showcase {
+	flex-wrap: wrap;
+	justify-content: space-around;
 	padding: 2rem;
 }
